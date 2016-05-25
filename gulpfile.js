@@ -19,12 +19,12 @@ gulp.task('styles', function() {
 
 gulp.task('watch', function(){
 	gulp.watch('./dev/styles/**/*.scss', ['styles']);
-	gulp.watch('./dev/scripts/main.js', ['scripts']);
+	gulp.watch('./dev/scripts/script.js', ['scripts']);
 	gulp.watch('.public/*.html', reload);
 });
 
 gulp.task('scripts', function(){
-	return gulp.src('./dev/scripts/main.js')
+	return gulp.src('./dev/scripts/script.js')
 		.pipe(babel({
 			presets: ['es2015']
 		}))
