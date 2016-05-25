@@ -24,7 +24,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('scripts', function(){
-	return gulp.src('./dev/scripts/main.js')
+	return gulp.src('./dev/scripts/script.js')
 		.pipe(babel({
 			presets: ['es2015']
 		}))
