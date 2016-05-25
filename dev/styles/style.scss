@@ -1,0 +1,20 @@
+@import "setup";
+@import "responsive";
+
+body {
+	background: brown;
+}
+
+.wrapper {
+	width: 80%;
+	max-width: 1600px;
+	background: white;
+}
+
+header {
+	min-height: 100vh;
+}
+
+.select {
+	min-height: 100vh;
+}
