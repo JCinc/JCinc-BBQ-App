@@ -2,17 +2,46 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Lets BBQ!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The only BBQ App you will need</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<header>
-		<h1>BBQ Mm, BBQ!</h1>
-		
-		<p>We will create a form here, and will allow the user to select ingredients here</p>
 
-		<p>JavaScript isn't linking properly.... Still waiting for this</p>
+<header>
+	<div class="wrapper">
+		<h1>The only BBQ App you will need</h1>
+		<h2>It's summertime!</h2>
+		<h2>You're hungry!</h2>
+		<h2>And thirsty!</h2>
+		<button class="getStarted">Let's Get Started!</button>
+	</div>
+</header>
+
+<section class="select" id="select">
+	<div class="wrapper">
+		<h3>Choose your meat:</h3>
+		<form action="">
+			<label for="chicken"><input type="radio">Chicken</label>
+			<label for="steak"><input type="radio">Steak</label>
+			<label for="chicken"><input type="radio">Chicken</label>
+		</form>
 		
-	</header>
+		<button class="getResults">Let's Get Results!</button>
+
+	</div>
+</section>
+
+<section class="results" id="results">
+	<div class="wrapper">
+		<h3>Here's your BBQ recipe!</h3>
+		<p>[INSERT YUMMYLY RESULT]</p>
+
+		<h3>Here's your beverage!</h3>
+		<p>[INSERT LCBO RESULT]</p>
+	</div>
+</section>
+
 	<footer>
 		<p>2016 | Copyright our files</p>
 	</footer>
