@@ -1,4 +1,5 @@
 'use strict';
+
 // Notes
 // - we now need to focus on inputting the results on the page
 
@@ -62,7 +63,6 @@ BBQApp.getDrinkData = function (drinkChoice) {
 	});
 };
 
-
 // Get users meat choice and pass value to Ajax call
 BBQApp.getUserSelection = function () {
 
@@ -98,7 +98,7 @@ BBQApp.getUserSelection = function () {
 	});
 };
 
-// Shuffle function, which will choose a random result 
+// Shuffle function, which will choose a random result
 BBQApp.shuffle = function (array) {
 	var counter = array.length;
 	// While there are elements in the array
@@ -147,15 +147,15 @@ BBQApp.displayFoodResults = function (results) {
 };
 
 // BBQApp.foodOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCookTime) {
+BBQApp.foodOntoPage = function (i, recipeName, recipeImage, recipeLink, recipeCookTime) {
 	// This if/else statement will allow for us to have a 'show more content' button
-	if(i < 3) {
-		$('.results').append('<div id="food-item' + i + '" class="food"></div>')
+	if (i < 3) {
+		$('.results').append('<div id="food-item' + i + '" class="food"></div>');
 	}
 	// Hiding the other 10, to be displayed later on
 	else {
-		$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>')
-	}
+			$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>');
+		}
 	// Add a div, then add an image as the background-image of that div
 	$('#food-item' + i).append('<img src="' + recipeImage + '"/>');
 	// And then a name
@@ -164,7 +164,7 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<p>View recipe</p>" + "</a>");
 	// Then the cook time
 	$('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
-}
+};
 
 BBQApp.displayDrinkResults = function (results) {
 	// LCBO
@@ -189,12 +189,11 @@ BBQApp.displayDrinkResults = function (results) {
 	}
 };
 
- // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.drinksOntoPage = function(i) {
+// BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
+BBQApp.drinksOntoPage = function (i) {
 	// And then a name
 	$('#food-item' + i).append("<h1>" + drinkName[i] + "</h1>");
 };
-
 
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function () {
