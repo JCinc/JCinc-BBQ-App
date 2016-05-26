@@ -24,7 +24,7 @@ BBQApp.getRecipeData = function (meatSelected, veggieArray) {
 			// Below line will filter through, only showing results with pictures
 			requirePictures: true,
 			// Limiting the results to a set number
-			maxResult: 20
+			maxResult: 5
 		},
 		method: 'GET',
 		dataType: 'json'
@@ -50,7 +50,7 @@ BBQApp.getDrinkData = function (drinkChoice) {
 			// Currently searching for beer, will change according to user input
 			q: drinkChoice,
 			// Filtering the results per page below
-			per_page: '15',
+			per_page: '5',
 			// Being appended to the url
 			access_key: BBQApp.drinksKey
 		}
@@ -141,6 +141,7 @@ BBQApp.displayFoodResults = function (results) {
 
 			// Now we call the BBQApp.foodOntoPage() function, which will implement our content onto the page
 			BBQApp.foodOntoPage(i, recipeName, recipeImage, recipeLink, recipeCookTime);
+			BBQApp.drinksOntoPage(i);
 		}
 	}
 };
@@ -148,7 +149,7 @@ BBQApp.displayFoodResults = function (results) {
 // BBQApp.foodOntoPage() will allow for us to implement our recipe items onto the page
 BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCookTime) {
 	// This if/else statement will allow for us to have a 'show more content' button
-	if(i < 5) {
+	if(i < 3) {
 		$('.results').append('<div id="food-item' + i + '" class="food"></div>')
 	}
 	// Hiding the other 10, to be displayed later on
@@ -158,11 +159,11 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 	// Add a div, then add an image as the background-image of that div
 	$('#food-item' + i).append('<img src="' + recipeImage + '"/>');
 	// And then a name
-	$('#food-item' + i).append(recipeName);
+	$('#food-item' + i).append("<h2>" + recipeName + "</h2>");
 	// Then a link
 	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<p>View recipe</p>" + "</a>");
 	// Then the cook time
-	$('#food-item' + i).append("Ready in " + recipeCookTime + " minutes");
+	$('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
 }
 
 BBQApp.displayDrinkResults = function (results) {
@@ -176,17 +177,22 @@ BBQApp.displayDrinkResults = function (results) {
 		for (var i = 0; i < drinkObjects.length; i++) {
 			// We store the drink name in a variable
 			var drinkName = drinkObjects[i].name;
-			// Same for the image
-			var drinkImage = drinkObjects[i].image_url;
 			// And the same for the category of drink
 			var drinkCategory = drinkObjects[i].secondary_category;
 			// We then log them
 			console.log(drinkName);
 			console.log(drinkImage);
 			console.log(drinkCategory);
-
+			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
+			BBQApp.drinksOntoPage(drinkName);
 		}
 	}
+};
+
+ // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
+BBQApp.drinksOntoPage = function(i) {
+	// And then a name
+	$('#food-item' + i).append("<h1>" + drinkName[i] + "</h1>");
 };
 
 
