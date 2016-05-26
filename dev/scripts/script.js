@@ -22,7 +22,7 @@ BBQApp.getRecipeData = function() {
 			_app_key: BBQApp.recipeKey,
 			_app_id: BBQApp.recipeID,
 			// Currently searching for steak, will be changed to user input
-			q: "steak",
+			q: "Barbeque",
 			// Below line will filter through, only showing results with pictures
 			requirePictures: true,
 			// Limiting the results to a set number
@@ -58,7 +58,7 @@ BBQApp.getDrinkData = function() {
 		}
 	})
 	.then(function(res) {
-		console.log(res);
+		// console.log(res);
 	}, function(err) {
 		console.log(err)
 	});
