@@ -27,6 +27,11 @@ input {
 	display: none;
 }
 
+input[type=checkbox]:checked + label,
+input[type=radio]:checked + label {
+	background: blue;
+}
+
 img {
 	max-width: 100%;
 }
@@ -114,7 +119,7 @@ header {
 		align-items: center;
 
 		label {
-			// margin: 30px;
+			margin: 10px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -128,14 +133,14 @@ header {
 
 	#meat {
 		label {
-			width: calc(100% / 4);
+			width: calc(100% / 4 - 20px);
 		}
 	}
 	
 	// Combined, because they're both three-wide
 	#veggie, #drink {
 		label, input {
-			width: calc(100% / 3);
+			width: calc(100% / 3 - 20px);
 		}
 	}
 }
