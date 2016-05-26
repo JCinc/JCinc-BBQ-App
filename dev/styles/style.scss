@@ -23,6 +23,19 @@ li
 	margin: 0;
 }
 
+input {
+	display: none;
+}
+
+input[type=checkbox]:checked + label,
+input[type=radio]:checked + label {
+	background: blue;
+}
+
+img {
+	max-width: 100%;
+}
+
 body {
 	background: $brand-red;
 }
@@ -98,46 +111,45 @@ header {
 	#meat, 
 	#veggie, 
 	#drink {
-		padding: 50px 20px;
+		padding: 5%;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		justify-content: space-between;
 		align-items: center;
 
-		label, input {
-			// margin: 30px;
+		label {
+			margin: 10px;
 			display: flex;
-			flex-direction: column;
+			justify-content: center;
 			align-items: center;
+			cursor: pointer;
 		}
 
 		input {
-			opacity: 0;
-			position: absolute;
-			width: 0;
-			height: 0;
-			margin: 0;
-			padding: 0;
+			display: none;
 		}
 	}
 
 	#meat {
-		label, input {
-			width: calc(100% / 4);
+		label {
+			width: calc(100% / 4 - 20px);
 		}
 	}
 	
 	// Combined, because they're both three-wide
 	#veggie, #drink {
 		label, input {
-			width: calc(100% / 3);
+			width: calc(100% / 3 - 20px);
 		}
 	}
 }
 
-#ingredient-parent {
+.ingredient-parent {
 	padding: 5%;
 	display: flex;
+	flex-direction: column;
+	text-align: center;
 }
 
 .lets-get-results {

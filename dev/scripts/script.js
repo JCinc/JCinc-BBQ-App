@@ -37,7 +37,9 @@ BBQApp.getUserSelection = function() {
 			// console.log(el);
 			veggieArray.push($(el).val());
 		});
-		// console.log(veggieArray);
+
+		console.log(veggieArray);
+
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
 		
