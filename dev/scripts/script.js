@@ -22,12 +22,12 @@ BBQApp.getUserMeat = function() {
 	$('form').on('submit', function(e){
 		e.preventDefault();
 		var meatSelected = $('input[name=meat]:checked').val();
-		console.log(meatSelected);
 	});
+	BBQApp.getRecipeData(meatSelected);
 }
 
 
-BBQApp.getRecipeData = function() {
+BBQApp.getRecipeData = function(userchoice) {
 	$.ajax({
 		url: BBQApp.recipeApiUrl,
 		data: {
@@ -79,6 +79,7 @@ BBQApp.getDrinkData = function() {
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function() {
 	// Keep this clean, only call functions in here
+	BBQApp.getUserMeat();
 	BBQApp.getDrinkData();
 	BBQApp.getRecipeData();
 }
