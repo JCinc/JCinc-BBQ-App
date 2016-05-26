@@ -41,8 +41,8 @@ BBQApp.getRecipeData = function () {
 
 // Drink Finder variables, storing the Key and URL (which I've concatenated together)
 BBQApp.drinksKey = 'MDo0NjQ5MjEzNC0yMWY4LTExZTYtYTIxNy01ZjMzOTgzMzVmODU6djFobWhkNTlrWFhnTVBPemI4VWZHUUlFZE5IQUtTSlJUYmE3';
-BBQApp.drinksApiUrl = 'http://lcboapi.com/products?access_key=';
-// ISSUE CONNECTING KEY
+BBQApp.drinksApiUrl = 'http://lcboapi.com/products';
+
 // Drink Finder AJAX call
 BBQApp.getDrinkData = function () {
 	$.ajax({
