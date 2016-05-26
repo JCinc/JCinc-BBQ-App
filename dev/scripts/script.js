@@ -15,6 +15,18 @@ BBQApp.recipeApiUrl = 'http://api.yummly.com/v1/api/recipes';
 BBQApp.recipeKey = 'adb94000e8a9955814a483ef0ca4592b';
 BBQApp.recipeID = '6cebcd5a';
 // Now our AJAX call
+
+
+// Get users meat choice and pass value to Ajax call
+BBQApp.getUserMeat = function() {
+	$('form').on('submit', function(e){
+		e.preventDefault();
+		var meatSelected = $('input[name=meat]:checked').val();
+		console.log(meatSelected);
+	});
+}
+
+
 BBQApp.getRecipeData = function() {
 	$.ajax({
 		url: BBQApp.recipeApiUrl,
@@ -22,7 +34,7 @@ BBQApp.getRecipeData = function() {
 			_app_key: BBQApp.recipeKey,
 			_app_id: BBQApp.recipeID,
 			// Currently searching for steak, will be changed to user input
-			q: "steak",
+			q: userchoice + " barbeque",
 			// Below line will filter through, only showing results with pictures
 			requirePictures: true,
 			// Limiting the results to a set number
