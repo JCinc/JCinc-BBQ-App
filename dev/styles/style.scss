@@ -1,7 +1,30 @@
 @import "setup";
+// brand colors, as shown in client handout
+
+$brand-red: rgb(208,2,27);
+$brand-blue: rgb(74,144,226);
+$brand-gray: rgb(74,74,74);
+
+// brand fonts should be as follows:
+// heading font: 'abril fatface'
+// body font: 'open sans'
+
+// Taking away padding and margin
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+ul, 
+li
+ {
+	padding: 0;
+	margin: 0;
+}
 
 body {
-	background: brown;
+	background: $brand-red;
 }
 
 .wrapper {
@@ -11,9 +34,20 @@ body {
 }
 
 header {
-	min-height: 100vh;
-	@media (max-width: 760px) {
-		min-height: 50vh;
+	height: 50px;
+	background: black;
+	color: white;
+	ul {
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		list-style-type: none;
+
+		li {
+			padding: 0 30px;
+		}
 	}
 }
 
