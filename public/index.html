@@ -9,6 +9,12 @@
 <body>
 
 <header>
+	<ul>
+		<li>Summertime BBQ App</li>
+		<li>About</li>
+	</ul>
+</header>
+<main>
 	<div class="wrapper">
 		<h1>The only BBQ App you will need</h1>
 		<h2>It's summertime!</h2>
@@ -16,15 +22,30 @@
 		<h2>And thirsty!</h2>
 		<button class="getStarted">Let's Get Started!</button>
 	</div>
-</header>
+</main>
 
 <section class="select" id="select">
 	<div class="wrapper">
 		<h3>Choose your meat:</h3>
-		<form action="">
+		<form action="" id="meat">
 			<label for="chicken"><input type="radio">Chicken</label>
 			<label for="steak"><input type="radio">Steak</label>
 			<label for="pork"><input type="radio">Pork</label>
+		</form>
+		<form action="" id="veggie">
+			<label for="onions"><input type="checkbox">onions</label>
+			<label for="celery"><input type="checkbox">celery</label>
+			<label for="carrots"><input type="checkbox">carrots</label>
+			<label for="tomatoes"><input type="checkbox">tomatoes</label>
+			<label for="peas"><input type="checkbox">peas</label>
+			<label for="corn"><input type="checkbox">corn</label>
+			<label for="mushrooms"><input type="checkbox">mushrooms</label>
+		</form>
+		<form action="" id="drink">
+			<label for="beer"><input type="radio">beer</label>
+			<label for="mixed drink"><input type="radio">mixed drink</label>
+			<label for="cocktail"><input type="radio">cocktail</label>
+			<label for="wine"><input type="radio">wine</label>
 		</form>
 		
 		<button class="getResults">Let's Get Results!</button>
@@ -34,11 +55,6 @@
 
 <section class="results" id="results">
 	<div class="wrapper">
-		<h3>Here's your BBQ recipe!</h3>
-		<p>[INSERT YUMMYLY RESULT]</p>
-
-		<h3>Here's your beverage!</h3>
-		<p>[INSERT LCBO RESULT]</p>
 	</div>
 </section>
 
