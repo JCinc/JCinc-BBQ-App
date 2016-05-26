@@ -23,7 +23,8 @@ li
 	margin: 0;
 }
 
-input {
+input[type=checkbox],
+input[type=radio] {
 	display: none;
 }
 
@@ -126,9 +127,6 @@ header {
 			cursor: pointer;
 		}
 
-		input {
-			display: none;
-		}
 	}
 
 	#meat {
