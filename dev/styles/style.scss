@@ -32,7 +32,7 @@ body {
 	max-width: 1600px;
 	background: white;
 }
-
+// Header start
 header {
 	height: 50px;
 	background: black;
@@ -50,7 +50,37 @@ header {
 		}
 	}
 }
+// Header end
+// Hero start
+.hero-intro {
+	background: $brand-blue;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-.select {
-	min-height: 100vh;
+	h1 {
+		font-size: 2.45rem;
+		padding-bottom: 20px;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+		padding-bottom: 7px;
+	}
+	
+	.get-started {
+		margin-top: 7px;
+		background: $brand-gray;
+		height: 50px;
+		width: 180px;
+		border: none;
+		border-radius: 12px;
+		box-shadow: 1.5px 1.5px 5px $brand-gray;
+	}
 }
+
+
+
+// Hero end
