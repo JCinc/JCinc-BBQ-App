@@ -24,6 +24,13 @@ BBQApp.getUserSelection = function() {
 		e.preventDefault();
 
 		var meatSelected = $('input[name=meat]:checked').val();
+
+		// If meatSelected === null, replace meatSelected with an empty string
+
+		if (typeof(meatSelected) === "undefined"){
+			meatSelected = " vegetarian";
+			console.log(meatSelected);
+		};
 		
 		var veggieSelected = $('input[name=veggie]:checked');
 		
@@ -39,6 +46,9 @@ BBQApp.getUserSelection = function() {
 		// and make them into a value
 		
 		BBQApp.getRecipeData(meatSelected, veggieArray);
+
+		
+
 	});
 	
 }
@@ -71,15 +81,18 @@ BBQApp.getRecipeData = function(meatSelected, veggieArray) {
 BBQApp.drinksKey = 'MDo0NjQ5MjEzNC0yMWY4LTExZTYtYTIxNy01ZjMzOTgzMzVmODU6djFobWhkNTlrWFhnTVBPemI4VWZHUUlFZE5IQUtTSlJUYmE3';
 BBQApp.drinksApiUrl = 'http://lcboapi.com/products';
 
+
+// Once a recipe is generated, choose 
+
 // Drink Finder AJAX call
-BBQApp.getDrinkData = function() {
+BBQApp.getDrinkData = function(drinkChoice) {
 	$.ajax({
 		url: BBQApp.drinksApiUrl,
 		method: 'GET',
 		dataType: 'json',
 		data: {
 			// Currently searching for beer, will change according to user input
-			q: "beer",
+			q: drinkChoice,
 			// Filtering the results per page below
 			per_page: '10',
 			// Being appended to the url
