@@ -33,19 +33,15 @@ BBQApp.getUserSelection = function () {
 		var veggieSelected = $('input[name=veggie]:checked');
 
 		var veggieArray = [];
-
 		veggieSelected.each(function (i, el) {
 			// i is required the index of the element in the array
 			// .each() is a jquery method
 			// console.log(el);
 			veggieArray.push($(el).val());
 		});
-<<<<<<< HEAD
 
 		console.log(veggieArray);
-=======
-		// console.log(veggieArray);
->>>>>>> 745e2006813753e60a55e5c681b7e60b1959845d
+
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
 
