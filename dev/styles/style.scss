@@ -1,5 +1,4 @@
 @import "setup";
-// @import "responsive";
 
 body {
 	background: brown;
@@ -13,6 +12,9 @@ body {
 
 header {
 	min-height: 100vh;
+	@media (max-width: 760px) {
+		min-height: 50vh;
+	}
 }
 
 .select {
