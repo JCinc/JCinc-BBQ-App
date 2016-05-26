@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>The only BBQ App you will need</title>
 	<link rel="stylesheet" href="styles/style.css">
-	<!-- Icons courtesy of Noun Project. Chicken, Sausage, steak icons by Paulo Sa Ferreira. Beer icon by Sachan. Cocktail icon by Esteban Sandoval. Bellpepper icon by Marco Galtarossa. Corn icon by Joe Harrison. Celery icon by James Cottell. Carrot icon by Creative Stall. Tomato icon by Nathan Thomson. Pea icon by Oliviu Stoian. Mushroom icon by Marianna Nardella.  -->
+	<!-- Icons courtesy of Noun Project. Cow icon by  João Proença. Chicken icon by Kate Vogel. Fish icon by Jens Tärning. Beer icon by Sachan. Cocktail icon by Esteban Sandoval. Bellpepper icon by Marco Galtarossa. Corn icon by Joe Harrison. Celery icon by James Cottell. Carrot icon by Creative Stall. Tomato icon by Nathan Thomson. Pea icon by Oliviu Stoian. Mushroom icon by Marianna Nardella. Wine icon by Edward Boatman -->
 </head>
 <body>
 
@@ -27,27 +27,81 @@
 	<div class="wrapper">
 		<h3>Choose your meat:</h3>
 		<form action="" id="main-form">
-			<fieldset id="meat">
-				<label for="chicken"><input type="radio" name="meat" value=" Chicken">Chicken</label>
-				<label for="steak"><input type="radio" name="meat" value=" Steak">Steak</label>
-				<label for="pork"><input type="radio" name="meat" value=" Pork">Pork</label>
-			</fieldset>
-			<fieldset id="veggie">
-				<label for="onions"><input type="checkbox" name="veggie" value=" Onions">onions</label>
-				<label for="celery"><input type="checkbox" name="veggie" value=" Celery">celery</label>
-				<label for="carrots"><input type="checkbox" name="veggie" value=" Carrots">carrots</label>
-				<label for="tomatoes"><input type="checkbox" name="veggie" value=" Tomatoes">tomatoes</label>
-				<label for="peas"><input type="checkbox" name="veggie" value=" Peas" >peas</label>
-				<label for="corn"><input type="checkbox" name="veggie" value=" Corn">corn</label>
-				<label for="mushrooms"><input type="checkbox" name="veggie" value=" Mushrooms">mushrooms</label>
-			</fieldset>
-			<fieldset id="drink">
-				<label for="beer"><input type="radio" name="drink" value=" Beer">beer</label>
-				<label for="mixed drink"><input type="radio" name="drink" value=" Mixed Drink">mixed drink</label>
-				<label for="cocktail"><input type="radio" name="drink" value=" Cocktail">cocktail</label>
-				<label for="wine"><input type="radio" name="drink" value=" wine">wine</label>
-			</fieldset>
-			<input type="submit" value="Lets get Results!">
+			<div id="meat">
+				<input type="radio" name="meat" id="chicken" value=" Chicken">
+				<label for="chicken">
+					<img class="ingredient-image" src="images/meats/chicken.png" alt="">
+					Chicken
+				</label>
+				<input type="radio" name="meat" id="steak" value=" Steak">
+				<label for="steak">
+					<img class="ingredient-image" src="images/meats/cow.png" alt="">
+					Steak
+					</label>
+				<input type="radio" name="meat" id="pork" value=" Pork">
+				<label for="pork">
+					<img class="ingredient-image" src="images/meats/pig.png" alt="">
+					Pork
+					</label>
+				<input type="radio" name="meat" id="seafood" value=" Pork">
+				<label for="seafood">
+					<img class="ingredient-image" src="images/meats/fish.png" alt="">
+					Seafood
+				</label>
+			</div>
+			<h3>Choose your veggies:</h3>
+			<div id="veggie">
+				<input type="checkbox" name="veggie" id="onions" value=" Onions">
+				<label for="onions">
+					<img class="ingredient-image" src="images/veggies/onion.png" alt="">
+					onions
+					</label>
+				<input type="checkbox" name="veggie" id="celery" value=" Celery">
+				<input type="checkbox" name="veggie" id="carrots" value=" Carrots">
+				<label for="carrots">
+					<img class="ingredient-image" src="images/veggies/carrots.png" alt="">
+					carrots
+				</label>
+				<input type="checkbox" name="veggie" id="tomatoes" value=" Tomatoes">
+				<label for="tomatoes">
+					<img class="ingredient-image" src="images/veggies/tomato.png" alt="">
+					tomatoes
+				</label>
+				<input type="checkbox" name="veggie" id="peas" value=" Peas">
+				<label for="peas">
+					<img class="ingredient-image" src="images/veggies/peas.png" alt="">
+					peas
+				</label>
+				<input type="checkbox" name="veggie" id="corn" value=" Corn">
+				<label for="corn">
+					<img class="ingredient-image" src="images/veggies/corn.png" alt="">
+					corn
+					</label>
+				<input type="checkbox" name="veggie" id="mushrooms" value=" Mushrooms">
+				<label for="mushrooms">
+					<img class="ingredient-image" src="images/veggies/mushroom.png" alt="">
+					mushrooms
+				</label>
+			</div>
+			<h3>Choose your beverage:</h3>
+			<div id="drink">
+				<input type="radio" name="drink" id="beer" value=" Beer">
+				<label for="beer">
+					<img class="ingredient-image" src="images/drinks/beer.png" alt="">
+					beer
+				</label>
+				<input type="radio" name="drink" id="mixed drink" value=" Mixed Drink">
+				<label for="mixed drink">
+					<img class="ingredient-image" src="images/drinks/cocktail.png" alt="">
+					mixed drink
+				</label>
+				<input type="radio" name="drink" id="wine" value=" wine">
+				<label for="wine">
+					<img class="ingredient-image" src="images/drinks/wine.png" alt="">
+					wine
+				</label>
+			</div>
+			<input type="submit" value="Lets get Results!" class="lets-get-results">
 		</form>
 	</div>
 </section>
@@ -57,10 +111,12 @@
 	</div>
 </section>
 
-	<footer>
-		<p>2016 | Copyright our files</p>
-	</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="scripts/script.js"></script>
+<footer>
+	<p>2016 | Copyright our files</p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="scripts/script.js"></script>
+
 </body>
 </html>
