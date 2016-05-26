@@ -18,12 +18,22 @@ BBQApp.recipeID = '6cebcd5a';
 
 
 // Get users meat choice and pass value to Ajax call
-BBQApp.getUserMeat = function() {
+BBQApp.getUserSelection = function() {
 	$('form').on('submit', function(e){
 		e.preventDefault();
 		var meatSelected = $('input[name=meat]:checked').val();
+
+		
+		var veggieSelected = $('input[name=veggie]:checked').val();
+		
+		var veggieArray = [];
+
+		veggieArray.push(veggieSelected).val();
+
+		console.log(veggieArray);
+
+		BBQApp.getRecipeData(meatSelected);
 	});
-	BBQApp.getRecipeData(meatSelected);
 }
 
 
@@ -34,7 +44,7 @@ BBQApp.getRecipeData = function(userchoice) {
 			_app_key: BBQApp.recipeKey,
 			_app_id: BBQApp.recipeID,
 			// Currently searching for steak, will be changed to user input
-			q: userchoice + " barbeque",
+			q: " barbeque",
 			// Below line will filter through, only showing results with pictures
 			requirePictures: true,
 			// Limiting the results to a set number
@@ -79,7 +89,7 @@ BBQApp.getDrinkData = function() {
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function() {
 	// Keep this clean, only call functions in here
-	BBQApp.getUserMeat();
+	BBQApp.getUserSelection();
 	BBQApp.getDrinkData();
 	BBQApp.getRecipeData();
 }
