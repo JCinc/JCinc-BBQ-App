@@ -31,6 +31,7 @@ body {
 	width: 80%;
 	max-width: 1600px;
 	background: white;
+	margin: 0 10%;
 }
 // Header start
 header {
@@ -69,18 +70,86 @@ header {
 		font-size: 1.75rem;
 		padding-bottom: 7px;
 	}
+}
+
+.get-started {
+	margin-top: 7px;
+	background: $brand-gray;
+	height: 50px;
+	width: 180px;
+	border: none;
+	border-radius: 12px;
+	box-shadow: 1.5px 1.5px 5px $brand-gray;
+}
+// Hero end
+.user-select {
+	h3 {
+		text-align: center;
+		font-size: 2rem;
+		padding: 30px;
+	}
+}
+// Form start
+#main-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	#meat, 
+	#veggie, 
+	#drink {
+		padding: 50px 20px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+
+		label, input {
+			margin: 30px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		input {
+			opacity: 0;
+			position: absolute;
+		}
+	}
+
+	#meat {
+		label, input {
+			width: calc(100% / 4 - 60px);
+		}
+	}
 	
-	.get-started {
-		margin-top: 7px;
-		background: $brand-gray;
-		height: 50px;
-		width: 180px;
-		border: none;
-		border-radius: 12px;
-		box-shadow: 1.5px 1.5px 5px $brand-gray;
+	// Combined, because they're both three-wide
+	#veggie, #drink {
+		label, input {
+			width: calc(100% / 3 - 60px);
+		}
 	}
 }
 
+.lets-get-results {
+	@extend .get-started;
+	width: 30%;
+	margin: 20px auto;
+}
 
+.ingredient-image {
+	height: 70px;
+	width: auto;
+	margin-bottom: 20px;
+}
+// Form end
 
-// Hero end
+// Footer 
+footer {
+	margin-top: 50px;
+	@extend header;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
