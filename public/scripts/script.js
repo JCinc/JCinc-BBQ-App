@@ -26,30 +26,24 @@ BBQApp.getUserSelection = function () {
 
 		var meatSelected = $('input[name=meat]:checked').val();
 
-<<<<<<< HEAD
-		var veggieSelected = $('input[name=veggie]:checked');
-=======
 		// If meatSelected === null, replace meatSelected with an empty string
->>>>>>> 0145df3263522f24a08e0df008896bac56e42043
 
 		if (typeof meatSelected === "undefined") {
 			meatSelected = " vegetarian";
 			console.log(meatSelected);
 		};
 
-<<<<<<< HEAD
-		veggieArray.push(veggieSelected.val());
-=======
 		var veggieSelected = $('input[name=veggie]:checked');
->>>>>>> 0145df3263522f24a08e0df008896bac56e42043
 
 		var veggieArray = [];
+
 		veggieSelected.each(function (i, el) {
 			// i is required the index of the element in the array
 			// .each() is a jquery method
 			// console.log(el);
 			veggieArray.push($(el).val());
 		});
+
 		console.log(veggieArray);
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
