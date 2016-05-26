@@ -24,11 +24,11 @@ BBQApp.getUserSelection = function() {
 		var meatSelected = $('input[name=meat]:checked').val();
 
 		
-		var veggieSelected = $('input[name=veggie]:checked').val();
+		var veggieSelected = $('input[name=veggie]:checked');
 		
 		var veggieArray = [];
 
-		veggieArray.push(veggieSelected).val();
+		veggieArray.push((veggieSelected).val());
 
 		console.log(veggieArray);
 
