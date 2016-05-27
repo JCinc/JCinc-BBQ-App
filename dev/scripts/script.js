@@ -235,5 +235,4 @@ BBQApp.init = function () {
 
 $(document).ready(function () {
 	BBQApp.init();
-	// console.log('TEST');
 });
