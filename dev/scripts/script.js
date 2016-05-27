@@ -57,13 +57,19 @@ BBQApp.getDrinkData = function (drinkChoice) {
 		}
 	}).then(function (res) {
 		BBQApp.displayDrinkResults(res);
+		// BBQApp.prodId = res.results.id;
 		console.log(res);
 	}, function (err) {
 		console.log(err);
 	});
+};	
 
 // LBCO Inventory variables
 BBQApp.drinksInventory = 'http://lcboapi.com/inventories';
+
+// obtain product_ID
+// check stores that have it
+// obtain user postal code - var userlocation
 
 	// LCBO API call
 BBQApp.getLCBOinventory = function (userLocation) {
@@ -98,7 +104,7 @@ BBQApp.getUserSelection = function () {
 		// And if it's equal to nothing, it will default to "vegetarian"
 		if (typeof meatSelected === "undefined") {
 			meatSelected = " vegetarian";
-		};
+		}
 		// console.log(meatSelected);
 		// veggieSelected will be equal to what the user checked
 		var veggieSelected = $('input[name=veggie]:checked');
@@ -139,7 +145,7 @@ BBQApp.shuffle = function (array) {
 		counter--;
 		// and swap the last element with it
 		var temp = array[counter];
-		array[counter] - array[index];
+		array[counter] = array[index];
 		array[index] = temp;
 	}
 	return array;
@@ -235,5 +241,4 @@ BBQApp.init = function () {
 
 $(document).ready(function () {
 	BBQApp.init();
-	// console.log('TEST');
 });
