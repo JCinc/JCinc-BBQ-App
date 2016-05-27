@@ -113,7 +113,7 @@ BBQApp.nearestLCBO = function (location) {
 
 BBQApp.postalSearch = function () {
 	$('.postalIntro').append('<h2>Find your nearest store</h2>');
-	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="Postal Code" id="txtPostalCode" maxlength="6"><button type="submit" class="btn triggerSearch" id="btnSearchStores">Search</button></form>');
+	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="btn" id="btnSearchStores">Search</button></form>');
 	// On submit of the postal code, we store the result in a variable
 	$('.postalCodeForm').on('submit', function (e) {
 		e.preventDefault();
@@ -235,7 +235,7 @@ BBQApp.foodOntoPage = function (i, recipeName, recipeImage, recipeLink, recipeCo
 	// Then a link
 	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<p>View recipe</p>" + "</a>");
 	// Then the cook time
-	var foodDiv = $('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
+	var foodDiv = $('#food-item' + i).append("<p>Ready in " + recipeCookTime + " minutes</p>");
 
 	// BBQApp.drinksOntoPage(foodDiv);
 };
@@ -259,18 +259,11 @@ BBQApp.displayDrinkResults = function (results) {
 			console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
 			// BBQApp.drinksOntoPage(i, drinkName);
-			$('#food-item' + i).append("<p>" + drinkName + "</p>");
+			$('#food-item' + i).append("<h3>" + "Pairs with this drink: " + drinkName + "</h3>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
 		}
 	}
 };
-
-// BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
-// BBQApp.drinksOntoPage = function(i, drinkName) {
-// 	// And then a name
-// 	console.log(drinkName);
-// 	$('#food-item0' + i).append("<p>" + drinkName + "</p>");
-// };
 
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function () {
