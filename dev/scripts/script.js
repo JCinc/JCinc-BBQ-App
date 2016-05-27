@@ -36,6 +36,30 @@ BBQApp.getRecipeData = function (meatSelected, veggieArray) {
 	});
 };
 
+// if mixed drink was selected send a call to yummley for a list of mixed bbq cocktails
+BBQApp.getMixedDrinkData = function () {
+	$.ajax({
+		url: BBQApp.recipeApiUrl,
+		data: {
+			_app_key: BBQApp.recipeKey,
+			_app_id: BBQApp.recipeID,
+			// Currently searching for steak, will be changed to user input
+			q: "drink barbeque",
+			// Below line will filter through, only showing results with pictures
+			requirePictures: true,
+			// Limiting the results to a set number
+			maxResult: 50
+		},
+		method: 'GET',
+		dataType: 'json'
+	}).then(function (res) {
+		BBQApp.mixedDrinkOnPage(res)
+		
+	}, function (err) {
+		console.log(err);
+	});
+};
+
 
 
 // Drink Finder variables, storing the Key and URL (which I've concatenated together)
@@ -124,7 +148,7 @@ BBQApp.getUserSelection = function () {
 		// and make them into a value
 		var drinkSelected = $('input[name=drink]:checked').val();
 			if (drinkSelected === " Mixed Drink") {
-				console.log(drinkSelected + "yay");
+				BBQApp.getMixedDrinkData();
 			}
 			else {	
 				BBQApp.getDrinkData(drinkSelected);
@@ -187,11 +211,11 @@ BBQApp.displayFoodResults = function (results) {
 BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCookTime) {
 	// This if/else statement will allow for us to have a 'show more content' button
 	if(i < 3) {
-		$('.results').append('<div id="food-item' + i + '" class="food"></div>')
+		$('.results').append('<div id="food-item' + i + '" class="food"></div>');
 	}
 	// Hiding the other 10, to be displayed later on
 	else {
-		$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>')
+		$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>');
 	}
 	// Add a div, then add an image as the background-image of that div
 	$('#food-item' + i).append('<img src="' + recipeImage + '"/>');
@@ -202,13 +226,27 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 	// Then the cook time
 	var foodDiv = $('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
 
-	BBQApp.drinksOntoPage(foodDiv);
+	// BBQApp.drinksOntoPage(foodDiv);
+};
+
+// displaying cocktails from yummley
+
+BBQApp.mixedDrinkOnPage = function(drinks) {
+	// console.log(drinks);
+	BBQApp.shuffle(drinks.matches);
+	var cocktailChoice = drinks.matches[0];
+	var cocktailIngredients = cocktailChoice.ingredients;
+	console.log(cocktailChoice)
 }
+
+
+
 
 BBQApp.displayDrinkResults = function (results) {
 	// LCBO
 	// We go into the drinkObjects object and stop at the 'result' key
 	var drinkObjects = results.result;
+	console.log(drinkObjects);
 	// We then shuffle through it
 	drinkObjects = BBQApp.shuffle(drinkObjects);
 	if (drinkObjects.length > 0) {
