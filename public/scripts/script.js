@@ -1,5 +1,3 @@
-'use strict';
-
 // Notes
 
 // - we now need to focus on inputting the results on the page
@@ -15,13 +13,60 @@ BBQApp.recipeApiUrl = 'http://api.yummly.com/v1/api/recipes';
 BBQApp.recipeKey = 'adb94000e8a9955814a483ef0ca4592b';
 BBQApp.recipeID = '6cebcd5a';
 
+BBQApp.getRecipeData = function (meatSelected, veggieArray) {
+	$.ajax({
+		url: BBQApp.recipeApiUrl,
+		data: {
+			_app_key: BBQApp.recipeKey,
+			_app_id: BBQApp.recipeID,
+			// Currently searching for steak, will be changed to user input
+			q: " barbeque" + meatSelected + veggieArray,
+			// Below line will filter through, only showing results with pictures
+			requirePictures: true,
+			// Limiting the results to a set number
+			maxResult: 5
+		},
+		method: 'GET',
+		dataType: 'json'
+	}).then(function (res) {
+		BBQApp.displayFoodResults(res);
+		// console.log(res);
+	}, function (err) {
+		console.log(err);
+	});
+};
+
+// if mixed drink was selected send a call to yummley for a list of mixed bbq cocktails
+BBQApp.getMixedDrinkData = function () {
+	$.ajax({
+		url: BBQApp.recipeApiUrl,
+		data: {
+			_app_key: BBQApp.recipeKey,
+			_app_id: BBQApp.recipeID,
+			// Currently searching for steak, will be changed to user input
+			q: "drink barbeque",
+			// Below line will filter through, only showing results with pictures
+			requirePictures: true,
+			// Limiting the results to a set number
+			maxResult: 50
+		},
+		method: 'GET',
+		dataType: 'json'
+	}).then(function (res) {
+		BBQApp.mixedDrinkOnPage(res);
+		
+	}, function (err) {
+		console.log(err);
+	});
+};
+
 // Drink Finder variables, storing the Key and URL (which I've concatenated together)
 BBQApp.drinksKey = 'MDo0NjQ5MjEzNC0yMWY4LTExZTYtYTIxNy01ZjMzOTgzMzVmODU6djFobWhkNTlrWFhnTVBPemI4VWZHUUlFZE5IQUtTSlJUYmE3';
 BBQApp.drinksApiUrl = 'http://lcboapi.com/products';
 
-var ajaxCalls = function ajaxCalls(meatSelected, veggieSelected, veggieArray, drinkSelected) {
-	return {
-		getRecipeData: $.ajax({
+var ajaxCalls = function(meatSelected, veggieSelected, veggieArray, drinkSelected) {
+	return{
+		getRecipeData :  $.ajax({
 			url: BBQApp.recipeApiUrl,
 			data: {
 				_app_key: BBQApp.recipeKey,
@@ -37,7 +82,7 @@ var ajaxCalls = function ajaxCalls(meatSelected, veggieSelected, veggieArray, dr
 			dataType: 'json'
 		}),
 		// if mixed drink was selected send a call to yummly for a list of mixed bbq drinks
-		getMixedDrinkData: $.ajax({
+		getMixedDrinkData : $.ajax({
 			url: BBQApp.recipeApiUrl,
 			data: {
 				_app_key: BBQApp.recipeKey,
@@ -53,7 +98,7 @@ var ajaxCalls = function ajaxCalls(meatSelected, veggieSelected, veggieArray, dr
 			dataType: 'json'
 		}),
 		// LCBO API call
-		getDrinkData: $.ajax({
+		getDrinkData : $.ajax({
 			url: BBQApp.drinksApiUrl,
 			method: 'GET',
 			dataType: 'json',
@@ -75,9 +120,10 @@ BBQApp.drinksInventory = 'http://lcboapi.com/stores';
 // check stores that have it
 // obtain user postal code - var userlocation
 
+
 // PROMISES
 // LCBO API CALL
-BBQApp.getLCBOinventory = function (userPostal) {
+BBQApp.getLCBOinventory = function(userPostal) {
 	$.ajax({
 		url: BBQApp.drinksInventory,
 		method: 'GET',
@@ -87,33 +133,34 @@ BBQApp.getLCBOinventory = function (userPostal) {
 			per_page: '5',
 			access_key: BBQApp.drinksKey
 		}
-	}).then(function (res) {
+	}).then(function(res) {
 		console.log(res);
 	});
 };
 
 // Storing object items in a variable
-BBQApp.nearestLCBO = function (location) {
-	var locationObjects = location.result;
-	for (var i = 0; i > locationObjects.length; i++) {
-		var locationName = locationObjects.name[i];
-		var locationAddressLine1 = locationObjects.address_line_1[i];
-		var locationAddressLine2 = locationObjects.address_line_2[i];
-		console.log(locationName);
-	}
+BBQApp.nearestLCBO = function(location) {
+    var locationObjects = location.result;
+			for(var i = 0; i > locationObjects.length; i++) {
+		    var locationName = locationObjects.name[i];
+		    var locationAddressLine1 = locationObjects.address_line_1[i];
+		    var locationAddressLine2 = locationObjects.address_line_2[i];
+		    console.log(locationName);
+		}
 };
 // Adding the search for postal onto the page
 
-BBQApp.postalSearch = function () {
+BBQApp.postalSearch = function() {
 	$('.postalIntro').append('<h2>Find your nearest store</h2>');
 	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="Postal Code" id="txtPostalCode" maxlength="6"><button type="submit" class="btn triggerSearch" id="btnSearchStores">Search</button></form>');
 	// On submit of the postal code, we store the result in a variable
-	$('.postalCodeForm').on('submit', function (e) {
+	$('.postalCodeForm').on('submit', function(e){
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
 		BBQApp.getLCBOinventory(userPostal);
 	});
 };
+
 
 // Get users meat choice and pass value to Ajax call
 BBQApp.getUserSelection = function () {
@@ -150,14 +197,15 @@ BBQApp.getUserSelection = function () {
 		// }
 		// $('input[name=drink]').on('click')
 		var dataCall = ajaxCalls(meatSelected, veggieSelected, veggieArray, drinkSelected);
-		$.when(dataCall.getRecipeData, dataCall.getMixedDrinkData, dataCall.getDrinkData).done(function (res1, res2, res3) {
-			console.log(res1);
-			console.log(res2);
-			console.log(res3);
-			BBQApp.displayFoodResults(res1[0]);
-			BBQApp.mixedDrinkOnPage(res2[0]);
-			BBQApp.displayDrinkResults(res3[0]);
-		});
+		$.when(dataCall.getRecipeData, dataCall.getMixedDrinkData, dataCall.getDrinkData)
+			.done(function(res1,res2,res3) {
+				console.log(res1);
+				console.log(res2);
+				console.log(res3);
+				BBQApp.displayFoodResults(res1[0]);
+				BBQApp.mixedDrinkOnPage(res2[0]);
+				BBQApp.displayDrinkResults(res3[0]);
+			});
 		console.log(drinkSelected);
 		// getRecipeData(meatSelected, veggieArray);
 		// Once a recipe is generated, output a random drink from the LCBO API
@@ -165,7 +213,7 @@ BBQApp.getUserSelection = function () {
 	});
 };
 
-// Shuffle function, which will choose a random result
+// Shuffle function, which will choose a random result 
 BBQApp.shuffle = function (array) {
 	var counter = array.length;
 	// While there are elements in the array
@@ -214,15 +262,15 @@ BBQApp.displayFoodResults = function (results) {
 };
 
 // BBQApp.foodOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.foodOntoPage = function (i, recipeName, recipeImage, recipeLink, recipeCookTime) {
+BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCookTime) {
 	// This if/else statement will allow for us to have a 'show more content' button
-	if (i < 3) {
+	if(i < 3) {
 		$('.results').append('<div id="food-item' + i + '" class="food"></div>');
 	}
 	// Hiding the other 10, to be displayed later on
 	else {
-			$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>');
-		}
+		$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>');
+	}
 	// Add a div, then add an image as the background-image of that div
 	$('#food-item' + i).append('<img src="' + recipeImage + '"/>');
 	// And then a name
@@ -237,13 +285,17 @@ BBQApp.foodOntoPage = function (i, recipeName, recipeImage, recipeLink, recipeCo
 
 // displaying cocktails from yummley
 
-BBQApp.mixedDrinkOnPage = function (drinks) {
+BBQApp.mixedDrinkOnPage = function(drinks) {
 	// console.log(drinks);
 	BBQApp.shuffle(drinks.matches);
 	var cocktailChoice = drinks.matches[0];
 	var cocktailIngredients = cocktailChoice.ingredients;
 	console.log(cocktailChoice);
 };
+
+
+
+
 
 BBQApp.displayDrinkResults = function (results) {
 	// LCBO
@@ -268,20 +320,21 @@ BBQApp.displayDrinkResults = function (results) {
 	}
 };
 
-// BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.drinksOntoPage = function (i, drinkName) {
+ // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
+BBQApp.drinksOntoPage = function(i, drinkName) {
 	// And then a name
 	$('#food-item' + i).append("<h1>" + drinkName + "</h1>");
 };
 
+
 // INIT and DOCUMENT READY BELOW
-BBQApp.init = function () {
+BBQApp.init = function() {
 	// Keep this clean, only call functions in here
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
 	BBQApp.init();
 });
