@@ -227,7 +227,7 @@ BBQApp.displayDrinkResults = function (results) {
 };
 
  // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.drinksOntoPage = function(i) {
+BBQApp.drinksOntoPage = function(i, drinkName) {
 	// And then a name
 	$(i).append("<h1>" + drinkName[i] + "</h1>");
 };
