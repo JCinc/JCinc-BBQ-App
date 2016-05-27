@@ -1,4 +1,5 @@
 // Notes
+
 // - we now need to focus on inputting the results on the page
 
 // -- START --
@@ -39,6 +40,7 @@ BBQApp.getRecipeData = function (meatSelected, veggieArray) {
 BBQApp.drinksKey = 'MDo0NjQ5MjEzNC0yMWY4LTExZTYtYTIxNy01ZjMzOTgzMzVmODU6djFobWhkNTlrWFhnTVBPemI4VWZHUUlFZE5IQUtTSlJUYmE3';
 BBQApp.drinksApiUrl = 'http://lcboapi.com/products';
 
+
 // LCBO API call
 BBQApp.getDrinkData = function (drinkChoice) {
 	$.ajax({
@@ -55,6 +57,30 @@ BBQApp.getDrinkData = function (drinkChoice) {
 		}
 	}).then(function (res) {
 		BBQApp.displayDrinkResults(res);
+		console.log(res);
+	}, function (err) {
+		console.log(err);
+	});
+
+// LBCO Inventory variables
+BBQApp.drinksInventory = 'http://lcboapi.com/inventories';
+
+	// LCBO API call
+BBQApp.getLCBOinventory = function (userLocation) {
+	$.ajax({
+		url: BBQApp.drinksApiUrl,
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			// Currently searching for userLocation, will change according to user input
+			q: userLocation,
+			// Filtering the results per page below
+			per_page: '5',
+			// Being appended to the url
+			access_key: BBQApp.drinkKey
+		}
+	}).then(function (res) {
+		BBQApp.displayLCBOinventories(res);
 		console.log(res);
 	}, function (err) {
 		console.log(err);
@@ -85,15 +111,20 @@ BBQApp.getUserSelection = function () {
 			// We then push that value into the array
 			veggieArray.push($(el).val());
 		});
-		console.log(veggieArray);
+		// console.log(veggieArray);
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
 		var drinkSelected = $('input[name=drink]:checked').val();
+			if (drinkSelected === " Mixed Drink") {
+				console.log(drinkSelected + "yay");
+			}
+			else {	
+				BBQApp.getDrinkData(drinkSelected);
+			}
 		// $('input[name=drink]').on('click')
 		console.log(drinkSelected);
 		BBQApp.getRecipeData(meatSelected, veggieArray);
 		// Once a recipe is generated, output a random drink from the LCBO API
-		BBQApp.getDrinkData(drinkSelected);
 	});
 };
 
@@ -140,7 +171,6 @@ BBQApp.displayFoodResults = function (results) {
 
 			// Now we call the BBQApp.foodOntoPage() function, which will implement our content onto the page
 			BBQApp.foodOntoPage(i, recipeName, recipeImage, recipeLink, recipeCookTime);
-			BBQApp.drinksOntoPage(i);
 		}
 	}
 };
@@ -162,7 +192,9 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 	// Then a link
 	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<p>View recipe</p>" + "</a>");
 	// Then the cook time
-	$('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
+	var foodDiv = $('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
+
+	BBQApp.drinksOntoPage(foodDiv);
 }
 
 BBQApp.displayDrinkResults = function (results) {
@@ -191,7 +223,7 @@ BBQApp.displayDrinkResults = function (results) {
  // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
 BBQApp.drinksOntoPage = function(i, drinkName) {
 	// And then a name
-	$('#food-item' + i).append("<h1>" + drinkName[i] + "</h1>");
+	$(i).append("<h1>" + drinkName[i] + "</h1>");
 };
 
 
@@ -203,5 +235,5 @@ BBQApp.init = function () {
 
 $(document).ready(function () {
 	BBQApp.init();
-	console.log('TEST');
+	// console.log('TEST');
 });
