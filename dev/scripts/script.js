@@ -64,7 +64,7 @@ var ajaxCalls = function(meatSelected, veggieSelected, veggieArray, drinkSelecte
 				access_key: BBQApp.drinksKey
 			}
 		})
-	}
+	};
 };
 // LBCO Inventory variables
 BBQApp.drinksInventory = 'http://lcboapi.com/stores';
@@ -88,8 +88,8 @@ BBQApp.getLCBOinventory = function(userPostal) {
 		}
 	}).then(function(res) {
 		console.log(res);
-	})
-}
+	});
+};
 
 // Storing object items in a variable
 BBQApp.nearestLCBO = function(location) {
@@ -149,9 +149,9 @@ BBQApp.getUserSelection = function () {
 		var dataCall = ajaxCalls(meatSelected, veggieSelected, veggieArray, drinkSelected);
 		$.when(dataCall.getRecipeData, dataCall.getMixedDrinkData, dataCall.getDrinkData)
 			.done(function(res1,res2,res3) {
-				console.log(res1)
-				console.log(res2)
-				console.log(res3)
+				console.log(res1);
+				console.log(res2);
+				console.log(res3);
 				BBQApp.displayFoodResults(res1[0]);
 				BBQApp.mixedDrinkOnPage(res2[0]);
 				BBQApp.displayDrinkResults(res3[0]);
