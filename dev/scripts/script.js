@@ -53,7 +53,7 @@ BBQApp.getMixedDrinkData = function () {
 		method: 'GET',
 		dataType: 'json'
 	}).then(function (res) {
-		BBQApp.mixedDrinkOnPage(res)
+		BBQApp.mixedDrinkOnPage(res);
 		
 	}, function (err) {
 		console.log(err);
@@ -126,7 +126,7 @@ BBQApp.nearestLCBO = function(location) {
 		    var locationAddressLine1 = locationObjects.address_line_1[i];
 		    var locationAddressLine2 = locationObjects.address_line_2[i];
 		    console.log(locationName);
-		};
+		}
 };
 // Adding the search for postal onto the page
 
@@ -259,8 +259,8 @@ BBQApp.mixedDrinkOnPage = function(drinks) {
 	BBQApp.shuffle(drinks.matches);
 	var cocktailChoice = drinks.matches[0];
 	var cocktailIngredients = cocktailChoice.ingredients;
-	console.log(cocktailChoice)
-}
+	console.log(cocktailChoice);
+};
 
 
 

@@ -124,7 +124,7 @@ BBQApp.nearestLCBO = function (location) {
 		var locationAddressLine1 = locationObjects.address_line_1[i];
 		var locationAddressLine2 = locationObjects.address_line_2[i];
 		console.log(locationName);
-	};
+	}
 };
 // Adding the search for postal onto the page
 
