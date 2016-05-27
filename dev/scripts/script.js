@@ -13,6 +13,53 @@ BBQApp.recipeApiUrl = 'http://api.yummly.com/v1/api/recipes';
 BBQApp.recipeKey = 'adb94000e8a9955814a483ef0ca4592b';
 BBQApp.recipeID = '6cebcd5a';
 
+BBQApp.getRecipeData = function (meatSelected, veggieArray) {
+	$.ajax({
+		url: BBQApp.recipeApiUrl,
+		data: {
+			_app_key: BBQApp.recipeKey,
+			_app_id: BBQApp.recipeID,
+			// Currently searching for steak, will be changed to user input
+			q: " barbeque" + meatSelected + veggieArray,
+			// Below line will filter through, only showing results with pictures
+			requirePictures: true,
+			// Limiting the results to a set number
+			maxResult: 5
+		},
+		method: 'GET',
+		dataType: 'json'
+	}).then(function (res) {
+		BBQApp.displayFoodResults(res);
+		// console.log(res);
+	}, function (err) {
+		console.log(err);
+	});
+};
+
+// if mixed drink was selected send a call to yummley for a list of mixed bbq cocktails
+BBQApp.getMixedDrinkData = function () {
+	$.ajax({
+		url: BBQApp.recipeApiUrl,
+		data: {
+			_app_key: BBQApp.recipeKey,
+			_app_id: BBQApp.recipeID,
+			// Currently searching for steak, will be changed to user input
+			q: "drink barbeque",
+			// Below line will filter through, only showing results with pictures
+			requirePictures: true,
+			// Limiting the results to a set number
+			maxResult: 50
+		},
+		method: 'GET',
+		dataType: 'json'
+	}).then(function (res) {
+		BBQApp.mixedDrinkOnPage(res);
+		
+	}, function (err) {
+		console.log(err);
+	});
+};
+
 // Drink Finder variables, storing the Key and URL (which I've concatenated together)
 BBQApp.drinksKey = 'MDo0NjQ5MjEzNC0yMWY4LTExZTYtYTIxNy01ZjMzOTgzMzVmODU6djFobWhkNTlrWFhnTVBPemI4VWZHUUlFZE5IQUtTSlJUYmE3';
 BBQApp.drinksApiUrl = 'http://lcboapi.com/products';
@@ -94,9 +141,12 @@ BBQApp.getLCBOinventory = function(userPostal) {
 // Storing object items in a variable
 BBQApp.nearestLCBO = function(location) {
     var locationObjects = location.result;
-    var locationName = locationObjects.name;
-    var locationAddressLine1 = locationObjects.address_line_1;
-    var locationAddressLine2 = locationObjects.address_line_2;
+			for(var i = 0; i > locationObjects.length; i++) {
+		    var locationName = locationObjects.name[i];
+		    var locationAddressLine1 = locationObjects.address_line_1[i];
+		    var locationAddressLine2 = locationObjects.address_line_2[i];
+		    console.log(locationName);
+		}
 };
 // Adding the search for postal onto the page
 
