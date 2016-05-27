@@ -91,31 +91,50 @@ BBQApp.getDrinkData = function (drinkChoice) {
 };	
 
 // LBCO Inventory variables
-BBQApp.drinksInventory = 'http://lcboapi.com/inventories';
+BBQApp.drinksInventory = 'http://lcboapi.com/stores';
 
 // obtain product_ID
 // check stores that have it
 // obtain user postal code - var userlocation
 
 	// LCBO API call
-BBQApp.getLCBOinventory = function (userLocation) {
+BBQApp.getLCBOinventory = function (userPostal) {
 	$.ajax({
-		url: BBQApp.drinksApiUrl,
+		url: BBQApp.drinksInventory,
 		method: 'GET',
 		dataType: 'json',
 		data: {
-			// Currently searching for userLocation, will change according to user input
-			q: userLocation,
-			// Filtering the results per page below
+			geo: userPostal,
 			per_page: '5',
-			// Being appended to the url
-			access_key: BBQApp.drinkKey
+			access_key: BBQApp.drinksKey
 		}
-	}).then(function (res) {
-		BBQApp.displayLCBOinventories(res);
+	}).then(function(res) {
 		console.log(res);
+		BBQApp.nearestLCBO(res);
+		// BBQApp.postalSearch();
+		// BBQApp.getPostalCode(res);
 	}, function (err) {
 		console.log(err);
+	});
+};
+
+// Storing object items in a variable
+BBQApp.nearestLCBO = function(location) {
+    var locationObjects = location.result;
+    var locationName = locationObjects.name;
+    var locationAddressLine1 = locationObjects.address_line_1;
+    var locationAddressLine2 = locationObjects.address_line_2;
+};
+// Adding the search for postal onto the page
+
+BBQApp.postalSearch = function() {
+	$('.postalIntro').append('<h2>Find your nearest store</h2>');
+	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="Postal Code" id="txtPostalCode" maxlength="6"><button type="submit" class="btn triggerSearch" id="btnSearchStores">Search</button></form>');
+	// On submit of the postal code, we store the result in a variable
+	$('.postalCodeForm').on('submit', function(e){
+		e.preventDefault();
+		var userPostal = $('input[id=txtPostalCode]').val();
+		BBQApp.getLCBOinventory(userPostal);
 	});
 };
 
@@ -157,6 +176,7 @@ BBQApp.getUserSelection = function () {
 		console.log(drinkSelected);
 		BBQApp.getRecipeData(meatSelected, veggieArray);
 		// Once a recipe is generated, output a random drink from the LCBO API
+		BBQApp.postalSearch();
 	});
 };
 
@@ -242,6 +262,7 @@ BBQApp.mixedDrinkOnPage = function(drinks) {
 
 
 
+
 BBQApp.displayDrinkResults = function (results) {
 	// LCBO
 	// We go into the drinkObjects object and stop at the 'result' key
@@ -276,6 +297,8 @@ BBQApp.drinksOntoPage = function(i) {
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function() {
 	// Keep this clean, only call functions in here
+	// BBQApp.getPostalCode();
+	BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
 };
 
