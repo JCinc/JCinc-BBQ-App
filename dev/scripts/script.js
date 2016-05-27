@@ -90,11 +90,16 @@ BBQApp.getUserSelection = function () {
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
 		var drinkSelected = $('input[name=drink]:checked').val();
+			if (drinkSelected === " Mixed Drink") {
+				console.log(drinkSelected + "yay");
+			}
+			else {	
+				BBQApp.getDrinkData(drinkSelected);
+			}
 		// $('input[name=drink]').on('click')
 		console.log(drinkSelected);
 		BBQApp.getRecipeData(meatSelected, veggieArray);
 		// Once a recipe is generated, output a random drink from the LCBO API
-		BBQApp.getDrinkData(drinkSelected);
 	});
 };
 
