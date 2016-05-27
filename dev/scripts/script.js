@@ -1,6 +1,8 @@
 // Notes
+// Make an AJAX call that will loop through itself and the ingredient ID's
+// That call will then return an array of the stores with that ID (item) in stock
 
-// - we now need to focus on inputting the results on the page
+// We also need to add an about section and smooth-scroll
 
 // -- START --
 
@@ -127,6 +129,11 @@ BBQApp.getUserSelection = function () {
 
 	$('form').on('submit', function (e) {
 		e.preventDefault();
+		// This will empty the results section on submit
+		$('.results').empty();
+    	$('.find').empty();
+    	// And the postal area will appear 
+    	$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
 		var meatSelected = $('input[name=meat]:checked').val();
 		// And if it's equal to nothing, it will default to "vegetarian"
