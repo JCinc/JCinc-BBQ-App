@@ -1,6 +1,8 @@
 // Notes
+// Make an AJAX call that will loop through itself and the ingredient ID's
+// That call will then return an array of the stores with that ID (item) in stock
 
-// - we now need to focus on inputting the results on the page
+// We also need to add an about section and smooth-scroll
 
 // -- START --
 
@@ -36,30 +38,6 @@ BBQApp.getRecipeData = function (meatSelected, veggieArray) {
 	});
 };
 
-// if mixed drink was selected send a call to yummley for a list of mixed bbq cocktails
-BBQApp.getMixedDrinkData = function () {
-	$.ajax({
-		url: BBQApp.recipeApiUrl,
-		data: {
-			_app_key: BBQApp.recipeKey,
-			_app_id: BBQApp.recipeID,
-			// Currently searching for steak, will be changed to user input
-			q: "drink barbeque",
-			// Below line will filter through, only showing results with pictures
-			requirePictures: true,
-			// Limiting the results to a set number
-			maxResult: 50
-		},
-		method: 'GET',
-		dataType: 'json'
-	}).then(function (res) {
-		BBQApp.mixedDrinkOnPage(res);
-		
-	}, function (err) {
-		console.log(err);
-	});
-};
-
 // Drink Finder variables, storing the Key and URL (which I've concatenated together)
 BBQApp.drinksKey = 'MDo0NjQ5MjEzNC0yMWY4LTExZTYtYTIxNy01ZjMzOTgzMzVmODU6djFobWhkNTlrWFhnTVBPemI4VWZHUUlFZE5IQUtTSlJUYmE3';
 BBQApp.drinksApiUrl = 'http://lcboapi.com/products';
@@ -81,22 +59,6 @@ var ajaxCalls = function(meatSelected, veggieSelected, veggieArray, drinkSelecte
 			method: 'GET',
 			dataType: 'json'
 		}),
-		// if mixed drink was selected send a call to yummly for a list of mixed bbq drinks
-		getMixedDrinkData : $.ajax({
-			url: BBQApp.recipeApiUrl,
-			data: {
-				_app_key: BBQApp.recipeKey,
-				_app_id: BBQApp.recipeID,
-				// Currently searching for steak, will be changed to user input
-				q: "drink barbeque",
-				// Below line will filter through, only showing results with pictures
-				requirePictures: true,
-				// Limiting the results to a set number
-				maxResult: 50
-			},
-			method: 'GET',
-			dataType: 'json'
-		}),
 		// LCBO API call
 		getDrinkData : $.ajax({
 			url: BBQApp.drinksApiUrl,
@@ -106,7 +68,7 @@ var ajaxCalls = function(meatSelected, veggieSelected, veggieArray, drinkSelecte
 				// Currently searching for beer, will change according to user input
 				q: drinkSelected,
 				// Filtering the results per page below
-				per_page: '5',
+				per_page: '100',
 				// Being appended to the url
 				access_key: BBQApp.drinksKey
 			}
@@ -152,7 +114,7 @@ BBQApp.nearestLCBO = function(location) {
 
 BBQApp.postalSearch = function() {
 	$('.postalIntro').append('<h2>Find your nearest store</h2>');
-	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="Postal Code" id="txtPostalCode" maxlength="6"><button type="submit" class="btn triggerSearch" id="btnSearchStores">Search</button></form>');
+	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="btn" id="btnSearchStores">Search</button></form>');
 	// On submit of the postal code, we store the result in a variable
 	$('.postalCodeForm').on('submit', function(e){
 		e.preventDefault();
@@ -167,6 +129,11 @@ BBQApp.getUserSelection = function () {
 
 	$('form').on('submit', function (e) {
 		e.preventDefault();
+		// This will empty the results section on submit
+		$('.results').empty();
+    	$('.find').empty();
+    	// And the postal area will appear 
+    	$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
 		var meatSelected = $('input[name=meat]:checked').val();
 		// And if it's equal to nothing, it will default to "vegetarian"
@@ -189,7 +156,7 @@ BBQApp.getUserSelection = function () {
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
 		var drinkSelected = $('input[name=drink]:checked').val();
-		// if (drinkSelected === " Mixed Drink") {
+		
 		// 	BBQApp.getMixedDrinkData();
 		// }
 		// else {	
@@ -197,14 +164,12 @@ BBQApp.getUserSelection = function () {
 		// }
 		// $('input[name=drink]').on('click')
 		var dataCall = ajaxCalls(meatSelected, veggieSelected, veggieArray, drinkSelected);
-		$.when(dataCall.getRecipeData, dataCall.getMixedDrinkData, dataCall.getDrinkData)
-			.done(function(res1,res2,res3) {
+		$.when(dataCall.getRecipeData, dataCall.getDrinkData)
+			.done(function(res1,res2) {
 				console.log(res1);
 				console.log(res2);
-				console.log(res3);
 				BBQApp.displayFoodResults(res1[0]);
-				BBQApp.mixedDrinkOnPage(res2[0]);
-				BBQApp.displayDrinkResults(res3[0]);
+				BBQApp.displayDrinkResults(res2[0]);
 			});
 		console.log(drinkSelected);
 		// getRecipeData(meatSelected, veggieArray);
@@ -278,22 +243,10 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 	// Then a link
 	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<p>View recipe</p>" + "</a>");
 	// Then the cook time
-	var foodDiv = $('#food-item' + i).append("<h5>Ready in " + recipeCookTime + " minutes</h5>");
+	var foodDiv = $('#food-item' + i).append("<p>Ready in " + recipeCookTime + " minutes</p>");
 
 	// BBQApp.drinksOntoPage(foodDiv);
 };
-
-// displaying cocktails from yummley
-
-BBQApp.mixedDrinkOnPage = function(drinks) {
-	// console.log(drinks);
-	BBQApp.shuffle(drinks.matches);
-	var cocktailChoice = drinks.matches[0];
-	var cocktailIngredients = cocktailChoice.ingredients;
-	console.log(cocktailChoice);
-};
-
-
 
 
 
@@ -306,24 +259,20 @@ BBQApp.displayDrinkResults = function (results) {
 	drinkObjects = BBQApp.shuffle(drinkObjects);
 	if (drinkObjects.length > 0) {
 		// loop through the results' length
-		for (var i = 0; i < drinkObjects.length; i++) {
+		for (var i = 0; i < 5; i++) {
 			// We store the drink name in a variable
 			var drinkName = drinkObjects[i].name;
 			// And the same for the category of drink
 			var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + drinkObjects[i].id;
 			// We then log them
 			// console.log(drinkName);
-			console.log(drinkName);
+			console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
-			BBQApp.drinksOntoPage(i, drinkName);
+			// BBQApp.drinksOntoPage(i, drinkName);
+			$('#food-item' + i).append("<h3>" + "Pairs with this drink: " + drinkName + "</h3>");
+			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
 		}
 	}
-};
-
- // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.drinksOntoPage = function(i, drinkName) {
-	// And then a name
-	$('#food-item' + i).append("<h1>" + drinkName + "</h1>");
 };
 
 
