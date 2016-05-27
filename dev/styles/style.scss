@@ -193,18 +193,69 @@ footer {
 }
 
 // Working with results that we've added in 
+
 .food-images {
 	height: 200px;
 }
 
+.food {
+	padding: 20px 0;
+}
+
+.results {
+	padding: 20px;
+	text-align: center;
+}
+
 .results img {
 	width: 100%;
-	padding: 20px;
 }
 
 .results h2 {
 	border: 1px solid black;
-	margin: 20px;
+	padding: 15px;
+}
+
+.results a {
+	color: $brand-blue;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.find {
 	padding: 20px;
 	text-align: center;
+	border: 1px solid black;
+	margin: 20px auto;
+}
+
+.find h2 {
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.find input {
+	width: 80%;
+	height: 50px;
+	padding: 10px;
+	text-align: center;
+}
+
+.btn {
+	display: block;
+	width: 80%;
+	height: 50px;
+	background: $brand-blue;
+	border: 0;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	margin: 20px auto;
+}
+
+.btn:hover,
+.btn:focus {
+	background: $brand-red;
 }
