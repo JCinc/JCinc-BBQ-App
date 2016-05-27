@@ -165,13 +165,11 @@ header {
 
 .lets-get-results {
 	@extend .get-started;
-	// width: 30%;
 	margin: 20px auto;
 }
 
 @media (max-width: 425px) {
 	.lets-get-results {
-		// @extend .get-started;
 		width: 90%;
 	}	
 }
@@ -208,7 +206,14 @@ footer {
 }
 
 .results img {
-	width: 100%;
+	width: 30%;
+	float: left;
+}
+
+@media (max-width: 760px) {
+	.results img {
+		width: 100%;
+	}
 }
 
 .results h2 {
@@ -228,6 +233,7 @@ footer {
 	text-align: center;
 	border: 1px solid black;
 	margin: 20px auto;
+	display: none;
 }
 
 .find h2 {
