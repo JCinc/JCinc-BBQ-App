@@ -68,7 +68,7 @@ var ajaxCalls = function ajaxCalls(meatSelected, veggieSelected, veggieArray, dr
 				// Currently searching for beer, will change according to user input
 				q: drinkSelected,
 				// Filtering the results per page below
-				per_page: '5',
+				per_page: '100',
 				// Being appended to the url
 				access_key: BBQApp.drinksKey
 			}
@@ -258,16 +258,19 @@ BBQApp.displayDrinkResults = function (results) {
 			// console.log(drinkName);
 			console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
-			BBQApp.drinksOntoPage(i, drinkName);
+			// BBQApp.drinksOntoPage(i, drinkName);
+			$('#food-item' + i).append("<p>" + drinkName + "</p>");
+			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
 		}
 	}
 };
 
 // BBQApp.drinksOntoPage() will allow for us to implement our recipe items onto the page
-BBQApp.drinksOntoPage = function (i, drinkName) {
-	// And then a name
-	$('#food-item' + i).append("<h1>" + drinkName + "</h1>");
-};
+// BBQApp.drinksOntoPage = function(i, drinkName) {
+// 	// And then a name
+// 	console.log(drinkName);
+// 	$('#food-item0' + i).append("<p>" + drinkName + "</p>");
+// };
 
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function () {
