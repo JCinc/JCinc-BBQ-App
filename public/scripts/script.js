@@ -119,9 +119,12 @@ BBQApp.getLCBOinventory = function (userPostal) {
 // Storing object items in a variable
 BBQApp.nearestLCBO = function (location) {
 	var locationObjects = location.result;
-	var locationName = locationObjects.name;
-	var locationAddressLine1 = locationObjects.address_line_1;
-	var locationAddressLine2 = locationObjects.address_line_2;
+	for (var i = 0; i > locationObjects.length; i++) {
+		var locationName = locationObjects.name[i];
+		var locationAddressLine1 = locationObjects.address_line_1[i];
+		var locationAddressLine2 = locationObjects.address_line_2[i];
+		console.log(locationName);
+	}
 };
 // Adding the search for postal onto the page
 
