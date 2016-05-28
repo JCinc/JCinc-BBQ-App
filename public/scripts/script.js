@@ -28,7 +28,7 @@ BBQApp.getRecipeData = function (meatSelected, veggieArray) {
 			// Below line will filter through, only showing results with pictures
 			requirePictures: true,
 			// Limiting the results to a set number
-			maxResult: 5
+			maxResult: 100
 		},
 		method: 'GET',
 		dataType: 'json'
@@ -86,7 +86,7 @@ BBQApp.drinksInventory = 'http://lcboapi.com/stores';
 
 // PROMISES
 // LCBO API CALL
-BBQApp.getLCBOinventory = function (userPostal) {
+BBQApp.getLCBO = function (userPostal) {
 	$.ajax({
 		url: BBQApp.drinksInventory,
 		method: 'GET',
@@ -97,7 +97,7 @@ BBQApp.getLCBOinventory = function (userPostal) {
 			access_key: BBQApp.drinksKey
 		}
 	}).then(function (res) {
-		console.log(res);
+		// console.log(res);
 		BBQApp.nearestLCBO(res);
 	});
 };
@@ -109,10 +109,12 @@ BBQApp.nearestLCBO = function (location) {
 	for (var i = 0; i < locationObjects.length; i++) {
 		var locationName = locationObjects[i].name;
 		var locationAddressLine1 = locationObjects[i].address_line_1;
-		var locationAddressLine2 = locationObjects[i].address_line_2;
-		console.log(locationName);
-		console.log(locationAddressLine1);
-		console.log(locationAddressLine2);
+		var locationId = locationObjects[i].id;
+		// console.log(locationId);
+		// var locationAddressLine2 = locationObjects[i].address_line_2;
+
+		// console.log(locationName);
+		// console.log(locationAddressLine2);
 	}
 };
 // Adding the search for postal onto the page
@@ -124,7 +126,8 @@ BBQApp.postalSearch = function () {
 	$('.postalCodeForm').on('submit', function (e) {
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
-		BBQApp.getLCBOinventory(userPostal);
+		console.log(BBQApp.drinkId);
+		BBQApp.getLCBO(userPostal);
 	});
 };
 
@@ -177,7 +180,7 @@ BBQApp.getUserSelection = function () {
 		console.log(drinkSelected);
 		// getRecipeData(meatSelected, veggieArray);
 		// Once a recipe is generated, output a random drink from the LCBO API
-		BBQApp.postalSearch();
+		// BBQApp.postalSearch();
 	});
 };
 
@@ -208,7 +211,7 @@ BBQApp.displayFoodResults = function (results) {
 	recipeObjects = BBQApp.shuffle(recipeObjects);
 	if (recipeObjects.length > 0) {
 		// loop through the results' length
-		for (var i = 0; i < recipeObjects.length; i++) {
+		for (var i = 0; i < 1; i++) {
 			// We store the recipes name in a variable
 			var recipeName = recipeObjects[i].recipeName;
 			// And the recipes image in a variable
@@ -258,15 +261,17 @@ BBQApp.displayDrinkResults = function (results) {
 	console.log(drinkObjects);
 	// We then shuffle through it
 	drinkObjects = BBQApp.shuffle(drinkObjects);
+	BBQApp.drinkOptions = [];
 	if (drinkObjects.length > 0) {
 		// loop through the results' length
-		for (var i = 0; i < 5; i++) {
+		for (var i = 0; i < 1; i++) {
 			// We store the drink name in a variable
 			var drinkName = drinkObjects[i].name;
 
-			var drinkId = drinkObjects[i].id;
+			BBQApp.drinkId = drinkObjects[i].id;
+
 			// And the same for the category of drink
-			var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + drinkId;
+			var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + BBQApp.drinkId;
 			// We then log them
 			// console.log(drinkName);
 			// console.log(drinkLink);
@@ -274,9 +279,9 @@ BBQApp.displayDrinkResults = function (results) {
 			// BBQApp.drinksOntoPage(i, drinkName);
 			$('#food-item' + i).append("<h3>" + "Pairs this with: " + drinkName + "</h3>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
-			$('#food-item' + i).append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="btn" id="btnSearchStores">Search</button></form>');
 		}
 	}
+	BBQApp.postalSearch();
 };
 
 // INIT and DOCUMENT READY BELOW
