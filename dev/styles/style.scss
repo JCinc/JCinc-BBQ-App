@@ -47,6 +47,10 @@ body {
 	background: white;
 	margin: 0 10%;
 }
+
+.hide {
+	display: none;
+}
 // Header start
 header {
 	height: 50px;
@@ -137,15 +141,14 @@ header {
 		label {
 			width: calc(100% / 4 - 20px);
 		}
-	}
-
-	@media (max-width:425px) {
-		#meat {
+		
+		@media (max-width:425px) {
 			label {
 				width: calc(100% / 2 - 20px);
 			}
 		}
 	}
+
 	
 	// Combined, because they're both three-wide
 	#veggie, #drink {
@@ -166,13 +169,12 @@ header {
 .lets-get-results {
 	@extend .get-started;
 	margin: 20px auto;
+	
+	@media (max-width: 425px) {
+			width: 90%;
+	}
 }
 
-@media (max-width: 425px) {
-	.lets-get-results {
-		width: 90%;
-	}	
-}
 
 .ingredient-image {
 	width: 100%;
@@ -208,13 +210,12 @@ footer {
 .results img {
 	width: 30%;
 	float: left;
-}
-
-@media (max-width: 760px) {
-	.results img {
+	
+	@media (max-width: 760px) {
 		width: 100%;
 	}
 }
+
 
 .results h2 {
 	border: 1px solid black;
