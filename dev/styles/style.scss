@@ -276,7 +276,7 @@ header {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 
 		label {
@@ -437,14 +437,4 @@ footer {
 	height: 50px;
 	padding: 10px;
 	text-align: center;
-}
-
-.btn {
-	@extend .blueButton;
-}
-
-.btn:hover,
-.btn:focus {
-	@extend .blueButton:hover;
-	@extend .blueButton:focus;
 }
