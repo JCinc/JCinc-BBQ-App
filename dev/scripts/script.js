@@ -382,8 +382,12 @@ BBQApp.displayDrinkResults = function (results) {
 				$('#food-item' + i).append(
 					"<div class='pairsWithWrapper'>" + 
 					"<h3>Pair this with:</h3></div>");
-				$('#food-item' + i).append(
+
+				if (drinkImg != null) {
+					$('#food-item' + i).append(
 					"<img class='drinkImg' src='" + drinkImg + "'>");
+				}
+
 				$('#food-item' + i).append(
 					"<h2 class='drinkName'>" + drinkName + "</h2>");
 				$('#food-item' + i).append(
