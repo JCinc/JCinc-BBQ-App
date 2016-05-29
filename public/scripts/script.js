@@ -1,11 +1,5 @@
 'use strict';
 
-// Notes
-// Make an AJAX call that will loop through itself and the ingredient ID's
-// That call will then return an array of the stores with that ID (item) in stock
-
-// We also need to add an about section and smooth-scroll
-
 // -- START --
 
 // SMOOTH SCROLL
@@ -204,7 +198,8 @@ BBQApp.getUserSelection = function () {
 		e.preventDefault();
 		// This will empty the results section on submit
 		$('.results').empty();
-		// $('.find').empty();
+		$('.postalIntro').empty();
+		$('.postalCodeForm').empty();
 		// And the postal area will appear
 		$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
@@ -356,7 +351,6 @@ BBQApp.init = function () {
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
-	smoothScroll();
 };
 
 $(document).ready(function () {
