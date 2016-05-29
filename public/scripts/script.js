@@ -345,7 +345,7 @@ BBQApp.displayDrinkResults = function (results) {
 	if (drinkObjects.length > 0) {
 		// loop through the results' length
 		for (var i = 0; i < 1; i++) {
-			if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844') {
+			if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844' && drinkObjects[i].id != '300699') {
 				// We store the drink name in a variable
 				var drinkName = drinkObjects[i].name;
 				var drinkImg = drinkObjects[i].image_url;
@@ -368,16 +368,16 @@ BBQApp.displayDrinkResults = function (results) {
 				$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 				$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 				$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton showPostal'>Find the nearest location</button>");
-				$('#food-item' + i).append("<button class='blueButton' id='reset'>Reset Search</button>");
 			}
 		}
 	}
 	BBQApp.postalSearch();
 };
 
-BBQApp.resetSearch = function () {
-	$('#reset').on('click', function () {
-		console.log('test');
+BBQApp.restart = function () {
+	$('#restart').on('click', function () {
+		$('html, body').animate({ scrollTop: 780 }, 0);
+		location.reload();
 	});
 };
 
@@ -387,7 +387,7 @@ BBQApp.init = function () {
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
-	BBQApp.resetSearch();
+	BBQApp.restart();
 };
 
 $(document).ready(function () {
