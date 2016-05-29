@@ -329,6 +329,10 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 		$('.results').append('<div id="food-item' + i + '" class="food hidden"></div>');
 	}
 	// Add a div, then add an image as the background-image of that div
+	$('#food-item' + i).append(
+		"<div class='pairsWithWrapper'>" + 
+		"<h3>Here is your BBQ recipe:</h3></div>");
+
 	$('#food-item' + i).append('<img src="' + recipeImage + '"/>');
 
 	// And then a name
@@ -378,10 +382,12 @@ BBQApp.displayDrinkResults = function (results) {
 				$('#food-item' + i).append(
 					"<div class='pairsWithWrapper'>" + 
 					"<h3>Pair this with:</h3></div>");
+
 				if (drinkImg != null) {
 					$('#food-item' + i).append(
-					"<img src='" + drinkImg + "'>");
+					"<img class='drinkImg' src='" + drinkImg + "'>");
 				}
+
 				$('#food-item' + i).append(
 					"<h2 class='drinkName'>" + drinkName + "</h2>");
 				$('#food-item' + i).append(
