@@ -112,8 +112,20 @@ BBQApp.getLCBOinventory = function (locationId) {
 			access_key: BBQApp.drinksKey
 		}
 	}).then(function (res) {
-		console.log(res);
+		BBQApp.putLCBOOnPage(res.result.store_id);
 	});
+};
+
+// Compare the objects returned in BBQApp.getLCBOinventory to the objects stored in BBQApp.storeIdAndName array
+
+BBQApp.putLCBOOnPage = function (hasStock) {
+	for (var i = 0; i < BBQApp.storeIdAndName.length; i++) {
+		var finalStore = BBQApp.storeIdAndName[i].locationId;
+
+		if (finalStore === hasStock) {
+			console.log("success");
+		}
+	}
 };
 
 // Storing object items in a variable
@@ -124,7 +136,6 @@ BBQApp.nearestLCBO = function (location) {
 		var locationAddressLine = locationObjects[i].address_line_1;
 		var locationId = locationObjects[i].id;
 		var store = { locationName: locationName, locationId: locationId, locationAddressLine: locationAddressLine };
-		console.log(store);
 		// console.log(locationId);
 		var pushLocationObject = function pushLocationObject() {
 
