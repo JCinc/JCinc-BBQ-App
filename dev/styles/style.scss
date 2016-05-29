@@ -65,6 +65,7 @@ body {
 .hide {
 	display: none;
 }
+
 // Header start
 header {
 	height: 50px;
@@ -287,6 +288,7 @@ header {
 			justify-content: center;
 			align-items: center;
 			cursor: pointer;
+			padding: 5%;
 		}
 
 	}
@@ -364,7 +366,8 @@ footer {
 	// flex-wrap: wrap;
 }
 
-.results {
+.results,
+.lcboResults {
 	padding: 20px;
 	text-align: center;
 	min-height: content;
