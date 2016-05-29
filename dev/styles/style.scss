@@ -35,7 +35,7 @@ input[type=checkbox]:checked + label,
 input[type=radio]:checked + label {
 	background: $brand-blue;
 	border: 1px solid $brand-gray;
-	box-shadow: 3px 3px 2px $brand-gray;
+	// box-shadow: 3px 3px 2px $brand-gray;
 }
 
 label {
@@ -351,6 +351,15 @@ footer {
 
 .results img {
 	width: 25%;
+	float: right;
+	
+	@media (max-width: 760px) {
+		width: 100%;
+	}
+}
+
+.results img.drinkImg{
+	width: 25%;
 	float: left;
 	
 	@media (max-width: 760px) {
@@ -363,7 +372,21 @@ footer {
 	float: left;
 }
 
-.results h2,
+.results h2 {
+	border: 1px solid $brand-gray;
+	padding: 15px;
+	margin-bottom: 20px;
+	width: calc(75% - 20px);
+	float: left;
+	// display: inline-block;
+
+	@media (max-width: 760px) {
+		width: 100%;
+		margin: 10px 0;
+	}
+
+}
+
 .drinkName {
 	border: 1px solid $brand-gray;
 	padding: 15px;
@@ -390,7 +413,6 @@ footer {
 	text-transform: capitalize;
 	font-weight: 300;
 	font-size: 1.25rem;
-	margin: 20px auto;
 }
 
 .results .blueButton {
@@ -405,8 +427,10 @@ footer {
 	font-size: 2rem;
 	padding: 30px;
 	font-family: $headingFont;
-	color: $brand-gray;
+	color: black;
 	text-align: center;
+	background: #AAAAAA;
+	letter-spacing: 0.1rem;
 }
 
 .find {
