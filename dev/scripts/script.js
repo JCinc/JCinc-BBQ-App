@@ -1,13 +1,13 @@
 // -- START --
 
 // SMOOTH SCROLL
-$('.get-started').on('click', function() {
+$('.blueButton').on('click', function() {
 	$.smoothScroll({
 		scrollTarget: '.user-select'
 	});
 });
 
-$('.lets-get-results').on('click', function() {
+$('.blueButton').on('click', function() {
     $('html, body').animate({
        scrollTop: $('.results').offset().top
     }, 850);
@@ -184,7 +184,7 @@ BBQApp.nearestLCBO = function(location) {
 
 BBQApp.postalSearch = function() {
 	$('.postalIntro').append('<h2>Enter your postal code</h2>');
-	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="btn" id="btnSearchStores">Search</button></form>');
+	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="blueButton" id="btnSearchStores">Search</button></form>');
 	// On submit of the postal code, we store the result in a variable
 	$('.postalCodeForm').on('submit', function(e){
 		e.preventDefault();
@@ -372,7 +372,7 @@ BBQApp.displayDrinkResults = function (results) {
 			$('#food-item' + i).append(
 				"<a href='#postalSearch'>" + 
 				"<button class='blueButton'>Find the nearest location</button>");
-			
+
 			$('#food-item' + i).append("<h3>" + "Pair this with " + drinkName + "</h3>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
 

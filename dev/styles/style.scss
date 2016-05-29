@@ -276,7 +276,7 @@ header {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 
 		label {
@@ -414,6 +414,7 @@ footer {
 	background: $brand-blue;
 	margin: 20px auto;
 	padding: 20px;
+}
 
 .find.hide {
 	display: none;
@@ -436,14 +437,4 @@ footer {
 	height: 50px;
 	padding: 10px;
 	text-align: center;
-}
-
-.btn {
-	@extend .blueButton;
-}
-
-.btn:hover,
-.btn:focus {
-	@extend .blueButton:hover;
-	@extend .blueButton:focus;
 }
