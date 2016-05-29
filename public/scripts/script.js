@@ -162,13 +162,25 @@ BBQApp.putLCBOOnPage = function (hasStock) {
 	BBQApp.printLCBOLocations(BBQApp.LCBOLocationsInStock);
 };
 
+// Adding the search for postal onto the page
+
+BBQApp.showPostalSearch = function () {
+	$('.showPostal').on('click', function () {
+		$('.find').addClass('show');
+		$('#close-find').on('click', function () {
+			$('.find').removeClass('show');
+		});
+	});
+};
 // Get the LCBOs on the page
 BBQApp.printLCBOLocations = function (LCBOLocationsInStock) {
 	for (var i = 0; i < BBQApp.LCBOLocationsInStock.length; i++) {
 		var store = BBQApp.LCBOLocationsInStock[i].locationName;
 		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
 	}
-	$('.lcboResults').append('<p>' + store + ': ' + storeLocation + '</p>');
+	$('#btnSearchStores').on('click', function () {
+		$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
+	});
 };
 
 // Storing object items in a variable
@@ -188,13 +200,11 @@ BBQApp.nearestLCBO = function (location) {
 	}
 	console.log(BBQApp.storeIdAndName);
 };
-// Adding the search for postal onto the page
 
 BBQApp.postalSearch = function () {
-	$('.postalIntro').append('<h2>Enter your postal code</h2>');
-	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="blueButton" id="btnSearchStores">Search</button></form>');
+	BBQApp.showPostalSearch();
 	// On submit of the postal code, we store the result in a variable
-	$('.postalCodeForm').on('submit', function (e) {
+	$('#btnSearchStores').on('click', function (e) {
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
 		console.log(BBQApp.drinkId);
@@ -209,10 +219,9 @@ BBQApp.getUserSelection = function () {
 		e.preventDefault();
 		// This will empty the results section on submit
 		$('.results').empty();
-		$('.postalIntro').empty();
-		$('.postalCodeForm').empty();
+		// $('.postalIntro').empty();
+		//   	$('.postalCodeForm').empty();
 		// And the postal area will appear
-		$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
 		var meatSelected = $('input[name=meat]:checked').val();
 		// And if it's equal to nothing, it will default to "vegetarian"
@@ -337,6 +346,7 @@ BBQApp.displayDrinkResults = function (results) {
 
 		// loop through the results' length
 		for (var i = 0; i < 1; i++) {
+<<<<<<< HEAD
 			if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844') {
 				// We store the drink name in a variable
 				var drinkName = drinkObjects[i].name;
@@ -362,6 +372,30 @@ BBQApp.displayDrinkResults = function (results) {
 				$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 				$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
 			}
+=======
+			// We store the drink name in a variable
+			var drinkName = drinkObjects[i].name;
+			var drinkImg = drinkObjects[i].image_url;
+			var drinkDescription = drinkObjects[i].tasting_note;
+			var drinkStyle = drinkObjects[i].style;
+
+			BBQApp.drinkId = drinkObjects[i].id;
+
+			// And the same for the category of drink
+			var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + BBQApp.drinkId;
+			// We then log them
+			// console.log(drinkName);
+			// console.log(drinkLink);
+			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
+			// BBQApp.drinksOntoPage(i, drinkName);
+
+			$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
+			$('#food-item' + i).append("<img src='" + drinkImg + "'>");
+			$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
+			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
+			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
+			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton showPostal'>Find the nearest location</button>");
+>>>>>>> b4616712b060b94d6db3033dcf16548f82156e98
 		}
 	}
 	BBQApp.postalSearch();

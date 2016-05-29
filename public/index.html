@@ -6,7 +6,7 @@
 	<title>The only BBQ App you will need</title>
 	<link rel="stylesheet" href="styles/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	<!-- Icons courtesy of Noun Project. Cow icon by  João Proença. Chicken icon by Kate Vogel. Fish icon by Jens Tärning. Beer icon by Sachan. Cocktail icon by Esteban Sandoval. Bellpepper icon by Marco Galtarossa. Corn icon by Joe Harrison. Celery icon by James Cottell. Carrot icon by Creative Stall. Tomato icon by Nathan Thomson. Pea icon by Oliviu Stoian. Mushroom icon by Marianna Nardella. Wine icon by Edward Boatman -->
 </head>
 <body>
@@ -147,9 +147,16 @@
 <section class="results wrapper" id="results">
 </section>
 
-<section class="find hide wrapper" id="find">
-	<div class="postalIntro"></div>
-	<div class="postalSearch" id="postalSearch"></div>
+<section class="find wrapper" id="find">
+	<div id="close-find">
+		<i class="fa fa-times-circle" aria-hidden="true"></i>
+	</div>
+	<h4>Please enter your postal code</h4>
+	<form action="" class="postalCodeForm">
+		<input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6">
+		<button class="blueButton" id="btnSearchStores">Search</button>
+	</form>
+	<div class="postalResults"></div>
 </section>
 
 <section class="lcboResults"></section>
