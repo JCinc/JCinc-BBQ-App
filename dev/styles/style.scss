@@ -228,12 +228,15 @@ footer {
 	text-decoration: none;
 }
 
+.find.hide {
+	display: none;
+}
+
 .find {
 	padding: 20px;
 	text-align: center;
 	border: 1px solid black;
 	margin: 20px auto;
-	display: none;
 }
 
 .find h2 {
