@@ -1,9 +1,12 @@
 @import "setup";
-// brand colors, as shown in client handout
+// brand colors and fonts, as shown in client handout
 
 $brand-red: rgb(208,2,27);
 $brand-blue: rgb(74,144,226);
 $brand-gray: rgb(74,74,74);
+$headingFont: 'Abril Fatface';
+$bodyFont: 'Open Sans';
+
 
 // brand fonts should be as follows:
 // heading font: 'abril fatface'
@@ -30,7 +33,15 @@ input[type=radio] {
 
 input[type=checkbox]:checked + label,
 input[type=radio]:checked + label {
-	background: blue;
+	background: $brand-blue;
+}
+
+label {
+	transition: all 0.5s ease-in-out;
+}
+
+label:hover {
+	background: $brand-blue;		
 }
 
 img {
@@ -39,6 +50,7 @@ img {
 
 body {
 	background: $brand-red;
+	font-family: $bodyFont;
 }
 
 .wrapper {
@@ -188,41 +200,67 @@ header {
 // POPUP-NAV END
 // Hero start
 .hero-intro {
-	background: $brand-blue;
+	background: url('../images/hero.jpg');
+	background-size: cover;
+	color: white;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
-	h1 {
-		font-size: 2.45rem;
-		// padding-bottom: 20px;
-		padding: 0 20px 20px 20px;
+	.centered {
+		min-width: 50%;
+		min-height: 20%;
+		background: rgba(0,0,0,0.5);
 		text-align: center;
+		padding: 20px;
+	}
+
+	h1 {
+		font-size: 3.45rem;
+		padding: 0 20px 20px 20px;
+		font-family: $headingFont;
+		letter-spacing: 0.25rem;
 	}
 
 	h2 {
 		font-size: 1.75rem;
 		padding-bottom: 7px;
+		font-weight: 300;
 	}
 }
 
-.get-started {
+// Global Button Styles
+
+.blueButton {
 	margin-top: 7px;
-	background: $brand-gray;
+	background: $brand-blue;
+	color: white;
 	height: 50px;
-	// width: 180px;
+	padding: 0 20px;
+	margin: 30px 0;
+	text-transform: uppercase;
+	font-weight: bold;
 	border: none;
 	border-radius: 12px;
 	box-shadow: 1.5px 1.5px 5px $brand-gray;
+	transition: all 0.5s ease-in-out;
+
+	&:hover,
+	&:focus {
+		background: $brand-red;
+	}
+
 }
+
 // Hero end
 .user-select {
 	h3 {
 		text-align: center;
 		font-size: 2rem;
 		padding: 30px;
+		font-family: $headingFont;
 	}
 }
 // Form start
@@ -281,7 +319,7 @@ header {
 }
 
 .lets-get-results {
-	@extend .get-started;
+	@extend .blueButton;
 	margin: 20px auto;
 	
 	@media (max-width: 425px) {
@@ -314,15 +352,19 @@ footer {
 
 .food {
 	padding: 20px 0;
+	// display: flex;
+	// flex-wrap: wrap;
 }
 
 .results {
 	padding: 20px;
 	text-align: center;
+	min-height: content;
+	overflow: hidden;
 }
 
 .results img {
-	width: 30%;
+	width: 25%;
 	float: left;
 	
 	@media (max-width: 760px) {
@@ -330,10 +372,18 @@ footer {
 	}
 }
 
+.recipeWrapper {
+	width: 80%;
+	float: left;
+}
 
-.results h2 {
-	border: 1px solid black;
+.results h2,
+.drinkName {
+	border: 1px solid $brand-gray;
 	padding: 15px;
+	width: calc(75% - 20px);
+	float: right;
+	// display: inline-block;
 }
 
 .results a {
@@ -343,6 +393,28 @@ footer {
 	text-decoration: none;
 }
 
+.ready,
+.drinkStyle {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.25rem;
+	// display: block;
+	// padding: 20px 0;
+	margin: 0;
+}
+
+.results .blueButton {
+	margin: 10px auto;
+	display: block;
+}
+
+.pairsWithWrapper {
+	display: block;
+	width: 100%;
+	background: $brand-blue;
+	margin: 20px auto;
+	padding: 20px;
+
 .find.hide {
 	display: none;
 }
@@ -350,7 +422,7 @@ footer {
 .find {
 	padding: 20px;
 	text-align: center;
-	border: 1px solid black;
+	border: 1px solid $brand-gray;
 	margin: 20px auto;
 }
 
@@ -367,19 +439,11 @@ footer {
 }
 
 .btn {
-	display: block;
-	width: 80%;
-	height: 50px;
-	background: $brand-blue;
-	border: 0;
-	color: white;
-	text-transform: uppercase;
-	font-weight: bold;
-	text-align: center;
-	margin: 20px auto;
+	@extend .blueButton;
 }
 
 .btn:hover,
 .btn:focus {
-	background: $brand-red;
+	@extend .blueButton:hover;
+	@extend .blueButton:focus;
 }
