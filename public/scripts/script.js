@@ -179,7 +179,7 @@ BBQApp.printLCBOLocations = function (LCBOLocationsInStock) {
 		var store = BBQApp.LCBOLocationsInStock[i].locationName;
 		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
 	}
-	$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
+	$('.postalResults').append('<a href="http://maps.google.com/?q=lcbo+' + storeLocation + '" target="_blank"' + '<p>' + store + ': ' + storeLocation + '</p>');
 };
 
 // Storing object items in a variable
