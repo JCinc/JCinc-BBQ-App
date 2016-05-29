@@ -170,6 +170,7 @@ BBQApp.showPostalSearch = function() {
 		$('.find').addClass('show');
 		$('#close-find').on('click', function (){
 			$('.find').removeClass('show');
+			$('.postalResults').empty()
 		});
 	});
 };
@@ -179,11 +180,8 @@ BBQApp.printLCBOLocations = function(LCBOLocationsInStock){
 		var store = BBQApp.LCBOLocationsInStock[i].locationName;
 		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
 	}
-	$('#btnSearchStores').on('click', function (){
-		$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
-	});
+	$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
 };
-
 
 
 // Storing object items in a variable
@@ -212,6 +210,7 @@ BBQApp.postalSearch = function() {
 		var userPostal = $('input[id=txtPostalCode]').val();
 		console.log(BBQApp.drinkId);
 		BBQApp.getLCBO(userPostal);
+		$('.postalResults').empty();
 	});
 };
 
@@ -356,11 +355,9 @@ BBQApp.displayDrinkResults = function (results) {
 	drinkObjects = BBQApp.shuffle(drinkObjects);
 	BBQApp.drinkOptions = [];
 	if (drinkObjects.length > 0) {
-<<<<<<< HEAD
-
 			// loop through the results' length
 			for (var i = 0; i < 1; i++) {
-			if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844'){
+				if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844'){
 				// We store the drink name in a variable
 				var drinkName = drinkObjects[i].name;
 				var drinkImg = drinkObjects[i].image_url;
@@ -369,7 +366,6 @@ BBQApp.displayDrinkResults = function (results) {
 
 
 				BBQApp.drinkId = drinkObjects[i].id;
-				console.log(BBQApp.drinkId);
 
 				// And the same for the category of drink
 				var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + BBQApp.drinkId;
@@ -394,50 +390,19 @@ BBQApp.displayDrinkResults = function (results) {
 					"<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 				$('#food-item' + i).append(
 					"<a href='#postalSearch'>" + 
-					"<button class='blueButton'>Find the nearest location</button>");
+					"<button class='blueButton showPostal'>Find the nearest location</button>");
+				$('#food-item' + i).append("<button class='blueButton' id='reset'>Reset Search</button>");
 			}
-=======
-		// loop through the results' length
-		for (var i = 0; i < 1; i++) {
-			// We store the drink name in a variable
-			var drinkName = drinkObjects[i].name;
-			var drinkImg = drinkObjects[i].image_url;
-			var drinkDescription = drinkObjects[i].tasting_note;
-			var drinkStyle = drinkObjects[i].style;
-
-
-			BBQApp.drinkId = drinkObjects[i].id;
-
-			// And the same for the category of drink
-			var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + BBQApp.drinkId;
-			// We then log them
-			// console.log(drinkName);
-			// console.log(drinkLink);
-			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
-			// BBQApp.drinksOntoPage(i, drinkName);
-
-			$('#food-item' + i).append(
-				"<div class='pairsWithWrapper'>" + 
-				"<h3>Pair this with:</h3></div>");
-			$('#food-item' + i).append(
-				"<img src='" + drinkImg + "'>");
-			$('#food-item' + i).append(
-				"<h2 class='drinkName'>" + drinkName + "</h2>");
-			$('#food-item' + i).append(
-				"<p class='drinkStyle'>Style: " + 
-				drinkStyle + 
-				"</p>");
-			$('#food-item' + i).append(
-				"<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
-			$('#food-item' + i).append(
-				"<a href='#postalSearch'>" + 
-				"<button class='blueButton showPostal'>Find the nearest location</button>");
->>>>>>> b4616712b060b94d6db3033dcf16548f82156e98
 		}
 	}
 	BBQApp.postalSearch();
 };
 
+BBQApp.resetSearch = function() {
+	$('#reset').on('click', function() {
+		console.log('test');
+	});
+}
 
 
 // INIT and DOCUMENT READY BELOW
@@ -446,6 +411,7 @@ BBQApp.init = function() {
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
+	BBQApp.resetSearch();
 };
 
 $(document).ready(function() {
