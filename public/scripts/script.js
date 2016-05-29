@@ -169,6 +169,7 @@ BBQApp.showPostalSearch = function () {
 		$('.find').addClass('show');
 		$('#close-find').on('click', function () {
 			$('.find').removeClass('show');
+			$('.postalResults').empty();
 		});
 	});
 };
@@ -178,9 +179,7 @@ BBQApp.printLCBOLocations = function (LCBOLocationsInStock) {
 		var store = BBQApp.LCBOLocationsInStock[i].locationName;
 		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
 	}
-	$('#btnSearchStores').on('click', function () {
-		$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
-	});
+	$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
 };
 
 // Storing object items in a variable
@@ -209,6 +208,7 @@ BBQApp.postalSearch = function () {
 		var userPostal = $('input[id=txtPostalCode]').val();
 		console.log(BBQApp.drinkId);
 		BBQApp.getLCBO(userPostal);
+		$('.postalResults').empty();
 	});
 };
 
@@ -367,9 +367,16 @@ BBQApp.displayDrinkResults = function (results) {
 			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton showPostal'>Find the nearest location</button>");
+			$('#food-item' + i).append("<button class='blueButton' id='reset'>Reset Search</button>");
 		}
 	}
 	BBQApp.postalSearch();
+};
+
+BBQApp.resetSearch = function () {
+	$('#reset').on('click', function () {
+		console.log('test');
+	});
 };
 
 // INIT and DOCUMENT READY BELOW
@@ -378,6 +385,7 @@ BBQApp.init = function () {
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
+	BBQApp.resetSearch();
 };
 
 $(document).ready(function () {
