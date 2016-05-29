@@ -169,7 +169,9 @@ BBQApp.printLCBOLocations = function(LCBOLocationsInStock){
 		var store = BBQApp.LCBOLocationsInStock[i].locationName;
 		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
 	}
-	$('.lcboResults').append('<p>' + store + ': ' + storeLocation + '</p>');
+	$('#btnSearchStores').on('click', function (){
+		$('.postalResults').append('<p>' + store + ': ' + storeLocation + '</p>');
+	});
 };
 
 
@@ -193,11 +195,19 @@ BBQApp.nearestLCBO = function(location) {
 };
 // Adding the search for postal onto the page
 
+BBQApp.showPostalSearch = function() {
+	$('.showPostal').on('click', function(){
+		$('.find').addClass('show');
+		$('#close-find').on('click', function (){
+			$('.find').removeClass('show');
+		});
+	});
+};
+
 BBQApp.postalSearch = function() {
-	$('.postalIntro').append('<h2>Enter your postal code</h2>');
-	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="blueButton" id="btnSearchStores">Search</button></form>');
+	BBQApp.showPostalSearch();
 	// On submit of the postal code, we store the result in a variable
-	$('.postalCodeForm').on('submit', function(e){
+	$('.postalCodeForm').on('click', function(e){
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
 		console.log(BBQApp.drinkId);
@@ -213,10 +223,9 @@ BBQApp.getUserSelection = function () {
 		e.preventDefault();
 		// This will empty the results section on submit
 		$('.results').empty();
-		$('.postalIntro').empty();
-    	$('.postalCodeForm').empty();
+		// $('.postalIntro').empty();
+  //   	$('.postalCodeForm').empty();
     	// And the postal area will appear 
-    	$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
 		var meatSelected = $('input[name=meat]:checked').val();
 		// And if it's equal to nothing, it will default to "vegetarian"
@@ -338,7 +347,6 @@ BBQApp.foodOntoPage = function(i, recipeName, recipeImage, recipeLink, recipeCoo
 		"<button class='blueButton'>View recipe</button>");
 };
 
-
 BBQApp.displayDrinkResults = function (results) {
 	// LCBO
 	// We go into the drinkObjects object and stop at the 'result' key
@@ -382,7 +390,7 @@ BBQApp.displayDrinkResults = function (results) {
 				"<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 			$('#food-item' + i).append(
 				"<a href='#postalSearch'>" + 
-				"<button class='blueButton'>Find the nearest location</button>");
+				"<button class='blueButton showPostal'>Find the nearest location</button>");
 		}
 	}
 	BBQApp.postalSearch();
