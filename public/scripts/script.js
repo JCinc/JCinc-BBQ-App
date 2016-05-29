@@ -149,7 +149,7 @@ BBQApp.nearestLCBO = function (location) {
 // Adding the search for postal onto the page
 
 BBQApp.postalSearch = function () {
-	$('.postalIntro').append('<h2>Find your nearest store</h2>');
+	$('.postalIntro').append('<h2>Enter your postal code</h2>');
 	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="btn" id="btnSearchStores">Search</button></form>');
 	// On submit of the postal code, we store the result in a variable
 	$('.postalCodeForm').on('submit', function (e) {
@@ -273,14 +273,13 @@ BBQApp.foodOntoPage = function (i, recipeName, recipeImage, recipeLink, recipeCo
 		}
 	// Add a div, then add an image as the background-image of that div
 	$('#food-item' + i).append('<img src="' + recipeImage + '"/>');
+
 	// And then a name
 	$('#food-item' + i).append("<h2>" + recipeName + "</h2>");
-	// Then a link
-	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<p>View recipe</p>" + "</a>");
 	// Then the cook time
-	var foodDiv = $('#food-item' + i).append("<p>Ready in " + recipeCookTime + " minutes</p>");
-
-	// BBQApp.drinksOntoPage(foodDiv);
+	$('#food-item' + i).append("<p class='ready'>Ready in " + recipeCookTime + " minutes</p>");
+	// Then a link
+	$('#food-item' + i).append("<a target='_blank' href=" + recipeLink + ">" + "<button class='blueButton'>View recipe</button>");
 };
 
 BBQApp.displayDrinkResults = function (results) {
@@ -296,6 +295,9 @@ BBQApp.displayDrinkResults = function (results) {
 		for (var i = 0; i < 1; i++) {
 			// We store the drink name in a variable
 			var drinkName = drinkObjects[i].name;
+			var drinkImg = drinkObjects[i].image_url;
+			var drinkDescription = drinkObjects[i].tasting_note;
+			var drinkStyle = drinkObjects[i].style;
 
 			BBQApp.drinkId = drinkObjects[i].id;
 
@@ -306,8 +308,12 @@ BBQApp.displayDrinkResults = function (results) {
 			// console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
 			// BBQApp.drinksOntoPage(i, drinkName);
-			$('#food-item' + i).append("<h3>" + "Pairs this with: " + drinkName + "</h3>");
-			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
+			$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
+			$('#food-item' + i).append("<img src='" + drinkImg + "'>");
+			$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
+			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
+			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
+			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
 		}
 	}
 	BBQApp.postalSearch();
