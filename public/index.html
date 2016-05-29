@@ -9,18 +9,30 @@
 </head>
 <body>
 
-<header>
-	<ul>
-		<li>Summertime BBQ App</li>
-		<li>About</li>
+<header class="header" id="top">
+	<p>Summertime BBQ App</p>
+	<ul id="show-about">
+		<li id="about">About</li>
 	</ul>
 </header>
+<nav class="popup-about">
+	<button id="close-about">Close [ X ]</button>
+	<h2>Lets get cooking!</h2>
+	<h3>Designed and developed by Corey Lantz, Justine Chiu, and Jesse Noseworthy</h3>
+	<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, dolore voluptas, quis laborum magnam consequuntur blanditiis nulla et. Aperiam, quia quibusdam fugit sunt soluta necessitatibus aut unde perferendis reiciendis error.</h4>
+	<div class="popup-about-icons">
+		<ul>
+			<li><a href="http://jessenoseworthy.com/" target="_blank"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+			<li><a href="https://twitter.com/JesseNoseworthy" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+		</ul>
+	</div>
+</nav>
 <main class="hero-intro">
 	<h1>The only BBQ App you will need</h1>
 	<h2>It's summertime!</h2>
 	<h2>You're hungry!</h2>
 	<h2>And thirsty!</h2>
-	<a href="#user-select"><button class="get-started">Let's Get Started!</button></a>
+	<button class="get-started">Let's Get Started!</button>
 </main>
 
 <section class="user-select" id="user-select">
@@ -139,6 +151,7 @@
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.7.2/jquery.smooth-scroll.min.js"></script>
 <script src="scripts/script.js"></script>
 
 </body>

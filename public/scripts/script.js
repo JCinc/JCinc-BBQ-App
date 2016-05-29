@@ -8,6 +8,43 @@
 
 // -- START --
 
+// SMOOTH SCROLL
+$('.get-started').on('click', function () {
+	$.smoothScroll({
+		scrollTarget: '.user-select'
+	});
+});
+
+$('.lets-get-results').on('click', function () {
+	$('html, body').animate({
+		scrollTop: $('.results').offset().top
+	}, 850);
+});
+
+// SHOW ABOUT SECTION START
+// The checkAbout function will be called below, to change the text of the HTML on the header
+var checkAbout = function checkAbout() {
+	var about = $('#about').text();
+	if (about == "About") {
+		$('#about').text('Close');
+	} else {
+		$('#about').text('About');
+	}
+};
+
+$('#show-about').on('click', function () {
+	// We need to display flex the main nav
+	$('.popup-about').toggleClass('show');
+	checkAbout();
+});
+
+$('#close-about').on('click', function () {
+	$('.popup-about').removeClass('show');
+	checkAbout();
+});
+
+// SHOW ABOUT END
+
 // YUMMLY API CALL
 var BBQApp = {
 	// Empty object, will hold all of our Yummly and LCBO content
@@ -306,7 +343,7 @@ BBQApp.displayDrinkResults = function (results) {
 			// console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
 			// BBQApp.drinksOntoPage(i, drinkName);
-			$('#food-item' + i).append("<h3>" + "Pairs this with: " + drinkName + "</h3>");
+			$('#food-item' + i).append("<h3>" + "Pair this with " + drinkName + "</h3>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
 		}
 	}
@@ -319,6 +356,7 @@ BBQApp.init = function () {
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
+	smoothScroll();
 };
 
 $(document).ready(function () {
