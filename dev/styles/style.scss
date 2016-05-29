@@ -321,6 +321,7 @@ header {
 .lets-get-results {
 	@extend .blueButton;
 	margin: 20px auto;
+	width: 20%;
 	
 	@media (max-width: 425px) {
 			width: 90%;
