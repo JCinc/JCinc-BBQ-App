@@ -389,7 +389,6 @@ BBQApp.displayDrinkResults = function (results) {
 			$('#food-item' + i).append(
 				"<a href='#postalSearch'>" + 
 				"<button class='blueButton showPostal'>Find the nearest location</button>");
-				"<button class='blueButton'>Find the nearest location</button>");
 		}
 	}
 	BBQApp.postalSearch();
