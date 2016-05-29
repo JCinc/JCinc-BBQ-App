@@ -34,6 +34,7 @@ input[type=radio] {
 input[type=checkbox]:checked + label,
 input[type=radio]:checked + label {
 	background: $brand-blue;
+	border: 1px solid $brand-gray;
 }
 
 label {
@@ -51,6 +52,7 @@ img {
 body {
 	background: $brand-red;
 	font-family: $bodyFont;
+	color: $brand-gray;
 }
 
 .wrapper {
@@ -203,7 +205,7 @@ header {
 	background: url('../images/hero.jpg');
 	background-size: cover;
 	color: white;
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -294,19 +296,25 @@ header {
 			width: calc(100% / 4 - 20px);
 		}
 		
-		@media (max-width:425px) {
+		@media (max-width: 450px) {
 			label {
 				width: calc(100% / 2 - 20px);
 			}
 		}
 	}
 
-	
-	// Combined, because they're both three-wide
-	#veggie, #drink {
-		label, input {
+	#veggie {
+
+		label {
 			width: calc(100% / 3 - 20px);
 		}
+		
+		@media (max-width: 450px) {
+			label {
+				width: calc(100% / 2 - 20px);
+			}
+		}
+
 	}
 }
 
@@ -321,7 +329,6 @@ header {
 .lets-get-results {
 	@extend .blueButton;
 	margin: 20px auto;
-	width: 20%;
 	
 	@media (max-width: 425px) {
 			width: 90%;
@@ -385,6 +392,12 @@ footer {
 	width: calc(75% - 20px);
 	float: right;
 	// display: inline-block;
+
+	@media (max-width: 760px) {
+		width: 100%;
+		margin: 10px 0;
+	}
+
 }
 
 .results a {
@@ -396,12 +409,10 @@ footer {
 
 .ready,
 .drinkStyle {
-	text-transform: uppercase;
-	font-weight: bold;
+	text-transform: capitalize;
+	font-weight: 300;
 	font-size: 1.25rem;
-	// display: block;
-	// padding: 20px 0;
-	margin: 0;
+	margin: 20px auto;
 }
 
 .results .blueButton {
@@ -412,9 +423,12 @@ footer {
 .pairsWithWrapper {
 	display: block;
 	width: 100%;
-	background: $brand-blue;
 	margin: 20px auto;
-	padding: 20px;
+	font-size: 2rem;
+	padding: 30px;
+	font-family: $headingFont;
+	color: $brand-gray;
+	text-align: center;
 }
 
 .find.hide {
