@@ -149,6 +149,7 @@ BBQApp.getLCBOinventory = function(locationId) {
 
 
 // Compare the objects returned in BBQApp.getLCBOinventory to the objects stored in BBQApp.storeIdAndName array
+BBQApp.LCBOLocationsInStock = [];
 
 BBQApp.putLCBOOnPage = function(hasStock) {
 	for(var i = 0; i < BBQApp.storeIdAndName.length; i++) {
@@ -156,8 +157,19 @@ BBQApp.putLCBOOnPage = function(hasStock) {
 
 		if(finalStore === hasStock) {
 			console.log("success");
+			BBQApp.LCBOLocationsInStock.push(BBQApp.storeIdAndName[i]);
 		}
 	}
+	BBQApp.printLCBOLocations(BBQApp.LCBOLocationsInStock);
+};
+
+// Get the LCBOs on the page
+BBQApp.printLCBOLocations = function(LCBOLocationsInStock){
+	for (var i = 0; i < BBQApp.LCBOLocationsInStock.length; i++) {
+		var store = BBQApp.LCBOLocationsInStock[i].locationName;
+		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
+	}
+	$('.lcboResults').append('<p>' + store + ': ' + storeLocation + '</p>');
 };
 
 
@@ -172,7 +184,6 @@ BBQApp.nearestLCBO = function(location) {
 	    var store = {locationName: locationName, locationId: locationId, locationAddressLine: locationAddressLine};
 	    // console.log(locationId);
 	    var pushLocationObject = function() {
-	    	
 	    	BBQApp.storeIdAndName.push(store);
 	    };
 	    pushLocationObject();
