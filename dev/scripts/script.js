@@ -372,10 +372,6 @@ BBQApp.displayDrinkResults = function (results) {
 			$('#food-item' + i).append(
 				"<a href='#postalSearch'>" + 
 				"<button class='blueButton'>Find the nearest location</button>");
-
-			$('#food-item' + i).append("<h3>" + "Pair this with " + drinkName + "</h3>");
-			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
-
 		}
 	}
 	BBQApp.postalSearch();
