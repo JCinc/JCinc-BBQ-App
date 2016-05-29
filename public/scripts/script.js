@@ -334,30 +334,34 @@ BBQApp.displayDrinkResults = function (results) {
 	drinkObjects = BBQApp.shuffle(drinkObjects);
 	BBQApp.drinkOptions = [];
 	if (drinkObjects.length > 0) {
+
 		// loop through the results' length
 		for (var i = 0; i < 1; i++) {
-			// We store the drink name in a variable
-			var drinkName = drinkObjects[i].name;
-			var drinkImg = drinkObjects[i].image_url;
-			var drinkDescription = drinkObjects[i].tasting_note;
-			var drinkStyle = drinkObjects[i].style;
+			if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844') {
+				// We store the drink name in a variable
+				var drinkName = drinkObjects[i].name;
+				var drinkImg = drinkObjects[i].image_url;
+				var drinkDescription = drinkObjects[i].tasting_note;
+				var drinkStyle = drinkObjects[i].style;
 
-			BBQApp.drinkId = drinkObjects[i].id;
+				BBQApp.drinkId = drinkObjects[i].id;
+				console.log(BBQApp.drinkId);
 
-			// And the same for the category of drink
-			var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + BBQApp.drinkId;
-			// We then log them
-			// console.log(drinkName);
-			// console.log(drinkLink);
-			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
-			// BBQApp.drinksOntoPage(i, drinkName);
+				// And the same for the category of drink
+				var drinkLink = "http://www.lcbo.com/lcbo/search?searchTerm=" + BBQApp.drinkId;
+				// We then log them
+				// console.log(drinkName);
+				// console.log(drinkLink);
+				// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
+				// BBQApp.drinksOntoPage(i, drinkName);
 
-			$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
-			$('#food-item' + i).append("<img src='" + drinkImg + "'>");
-			$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
-			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
-			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
-			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
+				$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
+				$('#food-item' + i).append("<img src='" + drinkImg + "'>");
+				$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
+				$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
+				$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
+				$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
+			}
 		}
 	}
 	BBQApp.postalSearch();
