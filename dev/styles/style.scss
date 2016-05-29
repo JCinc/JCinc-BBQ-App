@@ -321,7 +321,6 @@ header {
 
 // Footer 
 footer {
-	margin-top: 50px;
 	@extend header;
 	display: flex;
 	flex-direction: row;
@@ -436,10 +435,10 @@ footer {
 .find {
 	visibility: hidden;
 	opacity: 0;
-	width: 100%;
 	margin: 0;
 	transform: scale(1.5);
 }
+
 
 .find.show {
 	@extend .popup-about;
@@ -477,10 +476,16 @@ footer {
 		font-size: 1.75rem;
 		transition: .5s ease;
 		cursor: pointer;
-
+		transition: .5s ease;
 			&:hover {
 				color: $brand-red;
 			}
 	}
+}
 
+#restart {
+	cursor: pointer;
+	&:hover {
+		color: $brand-red;
+	}
 }
