@@ -1,13 +1,13 @@
 // -- START --
 
 // SMOOTH SCROLL
-$('.blueButton').on('click', function() {
+$('#firstButton').on('click', function() {
 	$.smoothScroll({
 		scrollTarget: '.user-select'
 	});
 });
 
-$('.blueButton').on('click', function() {
+$('#getResultsButton').on('click', function() {
     $('html, body').animate({
        scrollTop: $('.results').offset().top
     }, 850);
