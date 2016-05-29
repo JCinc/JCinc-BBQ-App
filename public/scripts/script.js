@@ -340,17 +340,16 @@ BBQApp.displayDrinkResults = function (results) {
 			// console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
 			// BBQApp.drinksOntoPage(i, drinkName);
-<<<<<<< HEAD
+
 			$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
 			$('#food-item' + i).append("<img src='" + drinkImg + "'>");
 			$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
 			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
-=======
+
 			$('#food-item' + i).append("<h3>" + "Pair this with " + drinkName + "</h3>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
->>>>>>> 73cc814b50af68b99cb2cb4e6a933f33e56f71d9
 		}
 	}
 	BBQApp.postalSearch();
