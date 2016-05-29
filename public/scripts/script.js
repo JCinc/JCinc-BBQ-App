@@ -1,12 +1,43 @@
 'use strict';
 
-// Notes
-// Make an AJAX call that will loop through itself and the ingredient ID's
-// That call will then return an array of the stores with that ID (item) in stock
-
-// We also need to add an about section and smooth-scroll
-
 // -- START --
+
+// SMOOTH SCROLL
+$('.get-started').on('click', function () {
+	$.smoothScroll({
+		scrollTarget: '.user-select'
+	});
+});
+
+$('.lets-get-results').on('click', function () {
+	$('html, body').animate({
+		scrollTop: $('.results').offset().top
+	}, 850);
+});
+
+// SHOW ABOUT SECTION START
+// The checkAbout function will be called below, to change the text of the HTML on the header
+var checkAbout = function checkAbout() {
+	var about = $('#about').text();
+	if (about == "About") {
+		$('#about').text('Close');
+	} else {
+		$('#about').text('About');
+	}
+};
+
+$('#show-about').on('click', function () {
+	// We need to display flex the main nav
+	$('.popup-about').toggleClass('show');
+	checkAbout();
+});
+
+$('#close-about').on('click', function () {
+	$('.popup-about').removeClass('show');
+	checkAbout();
+});
+
+// SHOW ABOUT END
 
 // YUMMLY API CALL
 var BBQApp = {
@@ -167,7 +198,8 @@ BBQApp.getUserSelection = function () {
 		e.preventDefault();
 		// This will empty the results section on submit
 		$('.results').empty();
-		// $('.find').empty();
+		$('.postalIntro').empty();
+		$('.postalCodeForm').empty();
 		// And the postal area will appear
 		$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
@@ -308,12 +340,17 @@ BBQApp.displayDrinkResults = function (results) {
 			// console.log(drinkLink);
 			// Now we call the BBQApp.drinksOntoPage() function, which will implement our content onto the page
 			// BBQApp.drinksOntoPage(i, drinkName);
+<<<<<<< HEAD
 			$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
 			$('#food-item' + i).append("<img src='" + drinkImg + "'>");
 			$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
 			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
 			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
+=======
+			$('#food-item' + i).append("<h3>" + "Pair this with " + drinkName + "</h3>");
+			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");
+>>>>>>> 73cc814b50af68b99cb2cb4e6a933f33e56f71d9
 		}
 	}
 	BBQApp.postalSearch();
