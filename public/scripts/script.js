@@ -179,11 +179,19 @@ BBQApp.nearestLCBO = function (location) {
 };
 // Adding the search for postal onto the page
 
+BBQApp.showPostalSearch = function () {
+	$('.showPostal').on('click', function () {
+		$('.find').addClass('show');
+		$('#close-find').on('click', function () {
+			$('.find').removeClass('show');
+		});
+	});
+};
+
 BBQApp.postalSearch = function () {
-	$('.postalIntro').append('<h2>Enter your postal code</h2>');
-	$('.postalSearch').append('<form class="postalCodeForm"><input type="text" placeholder="e.g. A1A1A1" id="txtPostalCode" maxlength="6"><button type="submit" class="blueButton" id="btnSearchStores">Search</button></form>');
+	BBQApp.showPostalSearch();
 	// On submit of the postal code, we store the result in a variable
-	$('.postalCodeForm').on('submit', function (e) {
+	$('.postalCodeForm').on('click', function (e) {
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
 		console.log(BBQApp.drinkId);
@@ -198,10 +206,9 @@ BBQApp.getUserSelection = function () {
 		e.preventDefault();
 		// This will empty the results section on submit
 		$('.results').empty();
-		$('.postalIntro').empty();
-		$('.postalCodeForm').empty();
+		// $('.postalIntro').empty();
+		//   	$('.postalCodeForm').empty();
 		// And the postal area will appear
-		$('.find').removeClass('hide');
 		// meatSelected will be the value of what the user checked
 		var meatSelected = $('input[name=meat]:checked').val();
 		// And if it's equal to nothing, it will default to "vegetarian"
@@ -346,7 +353,7 @@ BBQApp.displayDrinkResults = function (results) {
 			$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
 			$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
-			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton'>Find the nearest location</button>");
+			$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton showPostal'>Find the nearest location</button>");
 
 			$('#food-item' + i).append("<h3>" + "Pair this with " + drinkName + "</h3>");
 			$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>See LCBO's website</a>");

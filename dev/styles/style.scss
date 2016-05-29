@@ -133,7 +133,7 @@ header {
 		letter-spacing: 0.065rem;
 	}
 
-	button {
+	#close-about {
 		background: transparent;
 		border: none;
 		color: white;
@@ -417,25 +417,54 @@ footer {
 	padding: 20px;
 }
 
-.find.hide {
-	display: none;
-}
-
 .find {
-	padding: 20px;
-	text-align: center;
-	border: 1px solid $brand-gray;
-	margin: 20px auto;
+	visibility: hidden;
+	opacity: 0;
+	width: 100%;
+	margin: 0;
+	transform: scale(1.5);
 }
 
-.find h2 {
-	padding-bottom: 20px;
-	text-align: center;
-}
+.find.show {
+	@extend .popup-about;
+	margin-top: -100px;
+	visibility: visible;
+	opacity: 1;
+	padding: 0 20%;
+	width: 100%;
+	margin: 0;
 
-.find input {
-	width: 80%;
-	height: 50px;
-	padding: 10px;
-	text-align: center;
+	h4 {
+		padding-top: 5px;
+	}
+
+	.postalCodeForm {
+		display: flex;
+		flex-direction: column;
+
+		#txtPostalCode {
+			margin-top: 15px;
+			padding: 10px;
+			height: 35px;
+			width: 220px;
+		}
+	}
+	#btnSearchStores {
+		@extend .blueButton;
+		height: 45px;
+		margin: 15px;
+	}
+
+	#close-find {
+		// background: transparent;
+		color: white;
+		font-size: 1.75rem;
+		transition: .5s ease;
+		cursor: pointer;
+
+			&:hover {
+				color: $brand-red;
+			}
+	}
+
 }
