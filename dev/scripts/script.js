@@ -391,19 +391,18 @@ BBQApp.displayDrinkResults = function (results) {
 				$('#food-item' + i).append(
 					"<a href='#postalSearch'>" + 
 					"<button class='blueButton showPostal'>Find the nearest location</button>");
-				$('#food-item' + i).append("<button class='blueButton' id='reset'>Reset Search</button>");
 			}
 		}
 	}
 	BBQApp.postalSearch();
 };
 
-BBQApp.resetSearch = function() {
-	$('#reset').on('click', function() {
-		console.log('test');
+BBQApp.restart = function() {
+	$('#restart').on('click', function() {
+		$('html, body').animate({ scrollTop: 780 }, 0);
+		location.reload();
 	});
 }
-
 
 // INIT and DOCUMENT READY BELOW
 BBQApp.init = function() {
@@ -411,7 +410,7 @@ BBQApp.init = function() {
 	// BBQApp.getPostalCode();
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
-	BBQApp.resetSearch();
+	BBQApp.restart();
 };
 
 $(document).ready(function() {
