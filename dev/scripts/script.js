@@ -357,7 +357,7 @@ BBQApp.displayDrinkResults = function (results) {
 	if (drinkObjects.length > 0) {
 			// loop through the results' length
 			for (var i = 0; i < 1; i++) {
-				if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844'){
+				if (drinkObjects[i].id != '905976' && drinkObjects[i].id != '616938' && drinkObjects[i].id != '905844' && drinkObjects[i].id != '300699'){
 				// We store the drink name in a variable
 				var drinkName = drinkObjects[i].name;
 				var drinkImg = drinkObjects[i].image_url;
