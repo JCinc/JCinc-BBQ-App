@@ -77,6 +77,7 @@ var ajaxCalls = function(meatSelected, veggieSelected, veggieArray, drinkSelecte
 };
 // LBCO Inventory variables
 BBQApp.drinksInventory = 'http://lcboapi.com/stores';
+BBQApp.storeIdAndName = [];
 
 // obtain user postal code - var userlocation
 // obtain product_ID
@@ -100,21 +101,38 @@ BBQApp.getLCBO = function(userPostal) {
 		BBQApp.nearestLCBO(res);
 	});
 };
+// A call to get the inventory in our 5 closist LCBO's
+BBQApp.getLCBOinventory = function(locationId) {
+	$.ajax({
+		url: BBQApp.drinksInventory + '/' + locationId  + '/products/' + BBQApp.drinkId + '/inventory',
+		method: 'GET',
+		dataType: 'json',
+		data: {
+			access_key: BBQApp.drinksKey,
+		}
+	}).then(function(res) {
+		console.log(res);
+	});
+};
 
 // Storing object items in a variable
 BBQApp.nearestLCBO = function(location) {
     var locationObjects = location.result;
-    console.log(locationObjects);
-			for(var i = 0; i < locationObjects.length; i++) {
-			    var locationName = locationObjects[i].name;
-			    var locationAddressLine1 = locationObjects[i].address_line_1;
-			    var locationId = locationObjects[i].id;
-			    // console.log(locationId);
-			    // var locationAddressLine2 = locationObjects[i].address_line_2;
-			    
-			    // console.log(locationName);
-			    // console.log(locationAddressLine2);
-		}
+	for(var i = 0; i < locationObjects.length; i++) {
+	    var locationName = locationObjects[i].name;
+	    var locationAddressLine = locationObjects[i].address_line_1;
+	    var locationId = locationObjects[i].id;
+	    var store = {locationName: locationName, locationId: locationId, locationAddressLine: locationAddressLine};
+	    console.log(store);
+	    // console.log(locationId);
+	    var pushLocationObject = function() {
+	    	
+	    	BBQApp.storeIdAndName.push(store);
+	    };
+	    pushLocationObject();
+	    BBQApp.getLCBOinventory(locationId);
+	}
+		console.log(BBQApp.storeIdAndName);
 };
 // Adding the search for postal onto the page
 
