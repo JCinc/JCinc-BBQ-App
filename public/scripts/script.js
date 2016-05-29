@@ -162,6 +162,16 @@ BBQApp.putLCBOOnPage = function (hasStock) {
 	BBQApp.printLCBOLocations(BBQApp.LCBOLocationsInStock);
 };
 
+// Adding the search for postal onto the page
+
+BBQApp.showPostalSearch = function () {
+	$('.showPostal').on('click', function () {
+		$('.find').addClass('show');
+		$('#close-find').on('click', function () {
+			$('.find').removeClass('show');
+		});
+	});
+};
 // Get the LCBOs on the page
 BBQApp.printLCBOLocations = function (LCBOLocationsInStock) {
 	for (var i = 0; i < BBQApp.LCBOLocationsInStock.length; i++) {
@@ -190,21 +200,11 @@ BBQApp.nearestLCBO = function (location) {
 	}
 	console.log(BBQApp.storeIdAndName);
 };
-// Adding the search for postal onto the page
-
-BBQApp.showPostalSearch = function () {
-	$('.showPostal').on('click', function () {
-		$('.find').addClass('show');
-		$('#close-find').on('click', function () {
-			$('.find').removeClass('show');
-		});
-	});
-};
 
 BBQApp.postalSearch = function () {
 	BBQApp.showPostalSearch();
 	// On submit of the postal code, we store the result in a variable
-	$('.postalCodeForm').on('click', function (e) {
+	$('#btnSearchStores').on('click', function (e) {
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
 		console.log(BBQApp.drinkId);
