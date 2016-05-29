@@ -363,7 +363,9 @@ BBQApp.displayDrinkResults = function (results) {
 				// BBQApp.drinksOntoPage(i, drinkName);
 
 				$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
-				$('#food-item' + i).append("<img src='" + drinkImg + "'>");
+				if (drinkImg != null) {
+					$('#food-item' + i).append("<img src='" + drinkImg + "'>");
+				}
 				$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
 				$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 				$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
