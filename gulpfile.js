@@ -12,7 +12,7 @@ gulp.task('styles', function() {
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer('last 2 version', 'firefox 46', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
 		.pipe(concat('style.css'))
-		.pipe(gulp.dest('./public/styles/'))
+		.pipe(gulp.dest('./styles/'))
 		.pipe(reload({
 			stream: true
 		}));
@@ -21,7 +21,7 @@ gulp.task('styles', function() {
 gulp.task('watch', function(){
 	gulp.watch('./dev/styles/**/*.scss', ['styles']);
 	gulp.watch('./dev/scripts/script.js', ['scripts']);
-	gulp.watch('.public/*.html', reload);
+	gulp.watch('.*.html', reload);
 });
 
 gulp.task('scripts', function(){
@@ -31,7 +31,7 @@ gulp.task('scripts', function(){
 		.pipe(babel({
 			presets: ['es2015']
 		}))
-		.pipe(gulp.dest('./public/scripts/'))
+		.pipe(gulp.dest('.scripts/'))
 		.pipe(reload({
 			stream: true
 		}));
@@ -39,7 +39,7 @@ gulp.task('scripts', function(){
 
 gulp.task('browser-sync', function(){
 	browserSync.init({
-		server: './public'
+		server: '.'
 	})
 });
 
