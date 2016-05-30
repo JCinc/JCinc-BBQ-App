@@ -1,0 +1,512 @@
+article, aside, details, figcaption, figure, footer, header, footer, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden] {
+  display: none; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+a:focus {
+  outline: thin dotted; }
+
+a:active, a:hover {
+  outline: 0; }
+
+h1 {
+  font-size: 2em; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: 700; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: \201C \201D \2018 \2019; }
+
+small {
+  font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -.5em; }
+
+sub {
+  bottom: -.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+button, input {
+  line-height: normal; }
+
+button, html input[type=button],
+input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], input[disabled] {
+  cursor: default; }
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box; }
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body, figure {
+  margin: 0; }
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+* {
+  box-sizing: border-box; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li {
+  padding: 0;
+  margin: 0; }
+
+input[type=checkbox],
+input[type=radio] {
+  display: none; }
+
+input[type=checkbox]:checked + label,
+input[type=radio]:checked + label {
+  background: #4a90e2;
+  border: 1px solid #4a4a4a;
+  color: white; }
+
+label {
+  transition: all 0.3s ease-in-out;
+  text-align: center; }
+
+label:hover {
+  background: #4a90e2; }
+
+img {
+  max-width: 100%; }
+
+body {
+  background: #d0021b;
+  font-family: "Open Sans";
+  color: #4a4a4a; }
+
+.wrapper {
+  width: 80%;
+  max-width: 1600px;
+  background: white;
+  margin: 0 auto; }
+
+.hide {
+  display: none; }
+
+header, footer {
+  height: 50px;
+  background: black;
+  color: white;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  z-index: 2;
+  position: relative; }
+  header ul, footer ul {
+    list-style-type: none;
+    z-index: 1; }
+  header li, footer li {
+    cursor: pointer; }
+  header li, footer li, header p, footer p {
+    padding: 0 30px; }
+
+.popup-about, .find.show {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.75);
+  height: 100%;
+  top: 0;
+  color: white;
+  font-weight: 100;
+  width: 100%;
+  right: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding: 0 30%;
+  font-weight: 600;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.75s;
+  transform: scale(1.3);
+  z-index: 1; }
+  .popup-about h2, .find.show h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    padding-bottom: 25px; }
+  .popup-about h3, .find.show h3 {
+    font-style: italic;
+    text-align: center; }
+  .popup-about h4, .find.show h4 {
+    font-weight: 300;
+    padding-top: 25px;
+    text-align: center;
+    line-height: 1.7rem;
+    letter-spacing: 0.065rem; }
+  .popup-about #close-about, .find.show #close-about {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 20px;
+    font-size: 1.3rem;
+    text-transform: lowercase;
+    outline: none;
+    transiton: 0.5s ease; }
+    .popup-about #close-about:hover, .find.show #close-about:hover {
+      color: #d0021b; }
+  .popup-about a, .find.show a {
+    text-decoration: none;
+    color: white;
+    transition: 0.5s ease;
+    font-weight: 700; }
+    .popup-about a:hover, .find.show a:hover {
+      color: wheat; }
+
+.popup-about.show, .show.find {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  z-index: 1;
+  transform: scaleY(1); }
+
+.hero-intro {
+  background: url("../images/hero.jpg");
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center; }
+  .hero-intro .centered {
+    min-width: 50%;
+    min-height: 20%;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 20px; }
+  .hero-intro h1 {
+    font-size: 3.45rem;
+    padding: 0 20px 20px 20px;
+    font-family: "Abril Fatface";
+    letter-spacing: 0.25rem; }
+  .hero-intro h2 {
+    font-size: 1.75rem;
+    padding-bottom: 7px;
+    font-weight: 300; }
+
+.blueButton, .lets-get-results, .find.show #btnSearchStores {
+  margin-top: 7px;
+  background: #4a90e2;
+  color: white;
+  height: 50px;
+  padding: 0 20px;
+  margin: 30px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 1.5px 1.5px 5px #4a4a4a;
+  transition: all 0.5s ease-in-out; }
+  .blueButton:hover, .lets-get-results:hover, .find.show #btnSearchStores:hover, .blueButton:focus, .lets-get-results:focus, .find.show #btnSearchStores:focus {
+    background: #d0021b; }
+
+.user-select h3 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 30px;
+  font-family: "Abril Fatface"; }
+
+#main-form {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center; }
+  #main-form #meat,
+  #main-form #veggie,
+  #main-form #drink {
+    padding: 5%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-align: center;
+        align-items: center; }
+    #main-form #meat label,
+    #main-form #veggie label,
+    #main-form #drink label {
+      margin: 10px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: center;
+          justify-content: center;
+      -ms-flex-align: center;
+          align-items: center;
+      cursor: pointer;
+      padding: 5%; }
+  #main-form #meat label {
+    width: calc(100% / 5 - 20px); }
+  @media (max-width: 450px) {
+    #main-form #meat label {
+      width: calc(100% / 2 - 20px); } }
+  #main-form #veggie label {
+    width: calc(100% / 3 - 20px); }
+  @media (max-width: 450px) {
+    #main-form #veggie label {
+      width: calc(100% / 2 - 20px); } }
+
+.ingredient-parent {
+  padding: 5%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  text-align: center;
+  width: 70px; }
+
+.lets-get-results {
+  margin: 20px auto; }
+  @media (max-width: 425px) {
+    .lets-get-results {
+      width: 90%; } }
+
+.ingredient-image {
+  width: 100%;
+  margin-bottom: 20px; }
+
+footer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center; }
+
+.food-images {
+  height: 200px; }
+
+.food {
+  padding: 20px 0; }
+
+.results,
+.lcboResults {
+  padding: 20px;
+  text-align: center;
+  min-height: content;
+  overflow: hidden; }
+
+.results img {
+  width: 25%;
+  float: right; }
+  @media (max-width: 760px) {
+    .results img {
+      width: 100%; } }
+
+.results img.drinkImg {
+  width: 25%;
+  float: left; }
+  @media (max-width: 760px) {
+    .results img.drinkImg {
+      width: 100%; } }
+
+.recipeWrapper {
+  width: 80%;
+  float: left; }
+
+.results h2 {
+  border: 1px solid #4a4a4a;
+  padding: 15px;
+  margin-bottom: 20px;
+  width: calc(75% - 20px);
+  float: left; }
+  @media (max-width: 760px) {
+    .results h2 {
+      width: 100%;
+      margin: 10px 0; } }
+
+.drinkName {
+  border: 1px solid #4a4a4a;
+  padding: 15px;
+  width: calc(75% - 20px);
+  float: right; }
+  @media (max-width: 760px) {
+    .drinkName {
+      width: 100%;
+      margin: 10px 0; } }
+
+.results a {
+  color: #4a90e2;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none; }
+
+.ready,
+.drinkStyle {
+  text-transform: capitalize;
+  font-weight: 300;
+  font-size: 1.25rem; }
+
+.results .blueButton, .results .lets-get-results, .results .find.show #btnSearchStores, .find.show .results #btnSearchStores {
+  margin: 10px auto;
+  display: block; }
+
+.pairsWithWrapper {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  font-size: 2rem;
+  padding: 30px;
+  font-family: "Abril Fatface";
+  color: black;
+  text-align: center;
+  background: #AAAAAA;
+  letter-spacing: 0.1rem; }
+
+.find {
+  visibility: hidden;
+  opacity: 0;
+  margin: 0;
+  transform: scale(1.5); }
+
+.find.show {
+  margin-top: -100px;
+  visibility: visible;
+  opacity: 1;
+  padding: 0 20%;
+  width: 100%;
+  margin: 0; }
+  .find.show h4 {
+    padding-top: 5px; }
+  .find.show .postalCodeForm {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+    .find.show .postalCodeForm #txtPostalCode {
+      margin-top: 15px;
+      padding: 10px;
+      height: 35px;
+      width: 220px; }
+  .find.show #btnSearchStores {
+    height: 45px;
+    margin: 15px; }
+  .find.show #close-find {
+    color: white;
+    font-size: 1.75rem;
+    transition: .5s ease;
+    cursor: pointer;
+    transition: .5s ease; }
+    .find.show #close-find:hover {
+      color: #d0021b; }
+
+#restart {
+  cursor: pointer; }
+  #restart:hover {
+    color: #d0021b; }
