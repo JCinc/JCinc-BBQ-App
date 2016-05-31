@@ -247,7 +247,12 @@ BBQApp.getUserSelection = function () {
 		// we collect multiple veggieSelected choices and put them in the veggieArray
 		// and make them into a value
 		var drinkSelected = $('input[name=drink]:checked').val();
-		
+		if (meatSelected === " Beef" && drinkSelected === " wine") {
+			drinkSelected = " red wine";
+		}
+		else if (meatSelected != " Beef" && drinkSelected === " wine") {
+			drinkSelected = " white wine";
+		}
 		// 	BBQApp.getMixedDrinkData();
 		// }
 		// else {	
