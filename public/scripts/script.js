@@ -246,7 +246,7 @@ BBQApp.getUserSelection = function () {
 		var drinkSelected = $('input[name=drink]:checked').val();
 		if (meatSelected === " Beef" && drinkSelected === " wine") {
 			drinkSelected = " red wine";
-		} else if (meatSelected != " beef" && drinkSelected === " wine") {
+		} else if (meatSelected != " Beef" && drinkSelected === " wine") {
 			drinkSelected = " white wine";
 		}
 		// 	BBQApp.getMixedDrinkData();
