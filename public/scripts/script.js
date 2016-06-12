@@ -164,23 +164,23 @@ BBQApp.putLCBOOnPage = function (hasStock) {
 
 // Adding the search for postal onto the page
 
-BBQApp.showPostalSearch = function () {
-	$('.showPostal').on('click', function () {
-		$('.find').addClass('show');
-		$('#close-find').on('click', function () {
-			$('.find').removeClass('show');
-			$('.postalResults').empty();
-		});
-	});
-};
-// Get the LCBOs on the page
-BBQApp.printLCBOLocations = function (LCBOLocationsInStock) {
-	for (var i = 0; i < BBQApp.LCBOLocationsInStock.length; i++) {
-		var store = BBQApp.LCBOLocationsInStock[i].locationName;
-		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
-	}
-	$('.postalResults').append('<a href="http://maps.google.com/?q=lcbo+' + storeLocation + '" target="_blank"' + '<p>' + store + ': ' + storeLocation + '</p>');
-};
+// BBQApp.showPostalSearch = function() {
+// 	$('.showPostal').on('click', function(){
+// 		$('.find').addClass('show');
+// 		$('#close-find').on('click', function (){
+// 			$('.find').removeClass('show');
+// 			$('.postalResults').empty()
+// 		});
+// 	});
+// };
+// // Get the LCBOs on the page
+// BBQApp.printLCBOLocations = function(LCBOLocationsInStock){
+// 	for (var i = 0; i < BBQApp.LCBOLocationsInStock.length; i++) {
+// 		var store = BBQApp.LCBOLocationsInStock[i].locationName;
+// 		var storeLocation = BBQApp.LCBOLocationsInStock[i].locationAddressLine;
+// 	}
+// 	$('.postalResults').append('<a href="http://maps.google.com/?q=lcbo+' + storeLocation + '" target="_blank"' + '<p>' + store + ': ' + storeLocation + '</p>');
+// };
 
 // Storing object items in a variable
 BBQApp.nearestLCBO = function (location) {
@@ -206,7 +206,7 @@ BBQApp.postalSearch = function () {
 	$('#btnSearchStores').on('click', function (e) {
 		e.preventDefault();
 		var userPostal = $('input[id=txtPostalCode]').val();
-		console.log(BBQApp.drinkId);
+		// console.log(BBQApp.drinkId);
 		BBQApp.getLCBO(userPostal);
 		$('.postalResults').empty();
 	});
@@ -370,14 +370,16 @@ BBQApp.displayDrinkResults = function (results) {
 
 				$('#food-item' + i).append("<div class='pairsWithWrapper'>" + "<h3>Pair this with:</h3></div>");
 
-				if (drinkImg != null) {
+				if (drinkImg !== null) {
 					$('#food-item' + i).append("<img class='drinkImg' src='" + drinkImg + "'>");
 				}
 
 				$('#food-item' + i).append("<h2 class='drinkName'>" + drinkName + "</h2>");
 				$('#food-item' + i).append("<p class='drinkStyle'>Style: " + drinkStyle + "</p>");
 				$('#food-item' + i).append("<a href='" + drinkLink + "' target='_blank'>" + "More Details..." + "</a>");
-				$('#food-item' + i).append("<a href='#postalSearch'>" + "<button class='blueButton showPostal'>Find the nearest location</button>");
+				// $('#food-item' + i).append(
+				// 	"<a href='#postalSearch'>" +
+				// 	"<button class='blueButton showPostal'>Find the nearest location</button>");
 			}
 		}
 	}
