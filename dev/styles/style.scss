@@ -46,7 +46,7 @@ label {
 }
 
 label:hover {
-	background: $brand-blue;		
+	background: $brand-blue;
 }
 
 img {
@@ -54,7 +54,6 @@ img {
 }
 
 body {
-	background: $brand-red;
 	font-family: $bodyFont;
 	color: $brand-gray;
 }
@@ -224,7 +223,6 @@ header {
 	text-transform: uppercase;
 	font-weight: bold;
 	border: none;
-	border-radius: 12px;
 	box-shadow: 1.5px 1.5px 5px $brand-gray;
 	transition: all 0.5s ease-in-out;
 
@@ -353,15 +351,6 @@ footer {
 
 .results img {
 	width: 25%;
-	float: right;
-	
-	@media (max-width: 760px) {
-		width: 100%;
-	}
-}
-
-.results img.drinkImg{
-	width: 25%;
 	float: left;
 	
 	@media (max-width: 760px) {
@@ -378,6 +367,7 @@ footer {
 	border: 1px solid $brand-gray;
 	padding: 15px;
 	margin-bottom: 20px;
+	margin-left: 20px;
 	width: calc(75% - 20px);
 	float: left;
 	// display: inline-block;
