@@ -83,7 +83,7 @@ var ajaxCalls = function ajaxCalls(meatSelected, veggieSelected, veggieArray, dr
 				_app_key: BBQApp.recipeKey,
 				_app_id: BBQApp.recipeID,
 				// Currently searching for steak, will be changed to user input
-				q: " barbeque" + meatSelected + veggieArray,
+				q: " barbeque" + ' ' + meatSelected + ' ' + veggieArray,
 				// Below line will filter through, only showing results with pictures
 				requirePictures: true,
 				// Limiting the results to a set number
@@ -182,6 +182,47 @@ BBQApp.putLCBOOnPage = function (hasStock) {
 // 	$('.postalResults').append('<a href="http://maps.google.com/?q=lcbo+' + storeLocation + '" target="_blank"' + '<p>' + store + ': ' + storeLocation + '</p>');
 // };
 
+// When input is selected find corresponding img and change its logo to be white
+BBQApp.imageColor = function () {
+	// find which items are being selected and store their value
+	$('#meat label').on('click', function () {
+		var img = $(this).find('img');
+		var siblings = $(this).siblings().find('img');
+		siblings.each(function (index, sibling) {
+			$(sibling).attr('src', $(sibling).data('original'));
+		});
+		if (img.attr('src') === img.data('white')) {
+			$(img).attr('src', img.data('white'));
+		} else {
+			$(img).attr('src', img.data('white'));
+		}
+	});
+
+	$('#veggie label').on('click', function () {
+
+		var vegImg = $(this).find('img');
+
+		if (vegImg.attr('src') === vegImg.data('white')) {
+			$(vegImg).attr('src', vegImg.data('original'));
+		} else {
+			$(vegImg).attr('src', vegImg.data('white'));
+		}
+	});
+
+	$('#drink label').on('click', function () {
+		var drinkImg = $(this).find('img');
+		var siblings = $(this).siblings().find('img');
+		siblings.each(function (index, sibling) {
+			$(sibling).attr('src', $(sibling).data('original'));
+		});
+		if (drinkImg.attr('src') === drinkImg.data('white')) {
+			$(drinkImg).attr('src', drinkImg.data('white'));
+		} else {
+			$(drinkImg).attr('src', drinkImg.data('white'));
+		}
+	});
+};
+
 // Storing object items in a variable
 BBQApp.nearestLCBO = function (location) {
 	var locationObjects = location.result;
@@ -200,17 +241,17 @@ BBQApp.nearestLCBO = function (location) {
 	console.log(BBQApp.storeIdAndName);
 };
 
-BBQApp.postalSearch = function () {
-	BBQApp.showPostalSearch();
-	// On submit of the postal code, we store the result in a variable
-	$('#btnSearchStores').on('click', function (e) {
-		e.preventDefault();
-		var userPostal = $('input[id=txtPostalCode]').val();
-		// console.log(BBQApp.drinkId);
-		BBQApp.getLCBO(userPostal);
-		$('.postalResults').empty();
-	});
-};
+// BBQApp.postalSearch = function() {
+// 	// BBQApp.showPostalSearch();
+// 	// On submit of the postal code, we store the result in a variable
+// 	$('#btnSearchStores').on('click', function(e){
+// 		e.preventDefault();
+// 		var userPostal = $('input[id=txtPostalCode]').val();
+// 		// console.log(BBQApp.drinkId);
+// 		BBQApp.getLCBO(userPostal);
+// 		$('.postalResults').empty();
+// 	});
+// };
 
 // Get users meat choice and pass value to Ajax call
 BBQApp.getUserSelection = function () {
@@ -383,7 +424,7 @@ BBQApp.displayDrinkResults = function (results) {
 			}
 		}
 	}
-	BBQApp.postalSearch();
+	// BBQApp.postalSearch();
 };
 
 BBQApp.restart = function () {
@@ -400,6 +441,7 @@ BBQApp.init = function () {
 	// BBQApp.getLCBOinventory();
 	BBQApp.getUserSelection();
 	BBQApp.restart();
+	BBQApp.imageColor();
 };
 
 $(document).ready(function () {
