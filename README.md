@@ -1,2 +1,2 @@
 # JCinc-BBQ-App
-Our BBQ app using the Yummly &amp; LCBO APIs
+An app for BBQ's generating results from the Yummly &amp; LCBO APIs
